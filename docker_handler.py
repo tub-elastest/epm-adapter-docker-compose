@@ -38,7 +38,10 @@ def convert_to_resource_group(container_ids, resource_group_name):
                 port_binding = ResourceGroupCompose.MetadataEntryCompose(key="PORT_BINDING", value=binding)
                 metadata_entries.append(port_binding)
 
-        vdu = ResourceGroupCompose.VDUCompose(name=name, imageName=imageName, netName=netName, computeId=id, ip="localhost", metadata=metadata_entries)
+        key = next(iter(container.attrs["NetworkSettings"]["Networks"]))
+        ip = container.attrs["NetworkSettings"]["Networks"][key]["IPAddress"]
+
+        vdu = ResourceGroupCompose.VDUCompose(name=name, imageName=imageName, netName=netName, computeId=id, ip=ip, metadata=metadata_entries)
         vdus.append(vdu)
 
     network_names = set(network_names)
