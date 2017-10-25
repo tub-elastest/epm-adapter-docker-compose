@@ -20,6 +20,13 @@ The client is implemented using **python2.7** and the Docker-Compose, Docker and
 
 The client has to be started using the **client.py** file. The default port of the client is 50051.
 
+## Launchin the client in a docker container
+
+To start the client in a docker container run this command:
+```bash
+docker run -v /var/run/docker.sock:/var/run/docker.sock -p 50051:50051 --expose 50051 -i -t epm-compose-client
+```
+
 ## gRPC and building the protobuffers
 
 The docker-compose client connects to the Elastic Platform Manager through gRPC. 
