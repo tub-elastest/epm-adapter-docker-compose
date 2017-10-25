@@ -1,0 +1,29 @@
+version: '2.1'
+services:
+    elastest-platform-manager:
+        container_name: elastest-epm
+        image: elastest/epm
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock:rw
+        expose:
+            - 8180
+        ports:
+            - 8180:8180
+        networks:
+            - elastest
+        links:
+            - epm-docker-compose-driver
+    epm-docker-compose-driver:
+        container_name: epm-docker-compose-driver
+        build: .
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock:rw
+        expose: 
+            - 50051
+        ports:
+            - 50051:50051
+        networks:
+            - elastest
+networks:
+    elastest:
+        driver: bridge
