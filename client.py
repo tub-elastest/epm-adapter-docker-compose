@@ -1,5 +1,6 @@
 import time
 import os
+import sys
 import tarfile
 
 import grpc
@@ -11,6 +12,7 @@ import compose_handler
 import docker_handler
 import yaml
 import tempfile
+import epm_utils
 
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
@@ -56,9 +58,14 @@ class ComposeHandlerService(client_pb2_grpc.ComposeHandlerServicer):
         return client_pb2.Empty()
 
 
-def serve(port="50051"):
+def serve(port="50051", register=False):
     print("Starting server...")
     print("Listening on port: " + port)
+
+    if register:
+        print("Trying to register pop to EPM container...")
+        epm_utils.register_pop()
+
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     client_pb2_grpc.add_ComposeHandlerServicer_to_server(
         ComposeHandlerService(), server)
@@ -72,4 +79,7 @@ def serve(port="50051"):
 
 
 if __name__ == '__main__':
-    serve()
+    if "--register-pop" in sys.argv:
+        serve(register=True)
+    else:
+        serve()

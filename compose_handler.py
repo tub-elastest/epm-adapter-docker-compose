@@ -45,9 +45,12 @@ def rm(project_path):
         "--force": True,
         "--stop": True,
         "-v": False,
+        "--rmi": "none",
+        "--volumes": "/private",
+        "--remove-orphans": False,
         "SERVICE": ""
     }
 
     project = project_from_options(project_path, rm_options)
     cmd = TopLevelCommand(project)
-    cmd.rm(rm_options)
+    cmd.down(rm_options)
