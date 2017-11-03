@@ -58,29 +58,34 @@ class ComposeHandlerService(client_pb2_grpc.ComposeHandlerServicer):
 
     def StartContainer(self, request, context):
         container_id = request.resource_id
+        print("Starting container " + container_id)
         docker_handler.start_container(container_id)
         return client_pb2.Empty()
 
     def StopContainer(self, request, context):
         container_id = request.resource_id
+        print("Stopping container " + container_id)
         docker_handler.stop_container(container_id)
         return client_pb2.Empty()
 
     def ExecuteCommand(self, request, context):
         container_id = request.resource_id
         command = request.property
+        print("Executing command " + command)
         output = docker_handler.execute_on_container(container_id, command)
         return client_pb2.StringResponse(response=output)
 
     def DownloadFile(self, request, context):
         container_id = request.resource_id
         path = request.property
+        print("Downloading file " + path)
         output = docker_handler.download_file_from_container(container_id, path)
         return client_pb2.FileMessage(file=output)
 
     def UploadFile(self, request, context):
         container_id = request.resource_id
         path = request.property
+        print("Uploading a file to " + path)
         file = request.file
         docker_handler.upload_file_to_container(container_id, path, file)
         return client_pb2.Empty()
