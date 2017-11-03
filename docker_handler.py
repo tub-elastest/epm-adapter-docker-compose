@@ -80,16 +80,14 @@ def recursive_parsing(data, names, out):
                 key += "_" + str(names[n])
             for v in a:
                 value += v + ";"
-            if len(value) < 250:
-                entry = ResourceGroupCompose.MetadataEntryCompose(key=key, value=value)
-                out.append(entry)
+            entry = ResourceGroupCompose.MetadataEntryCompose(key=key, value=value)
+            out.append(entry)
         else:
             key = names[0]
             for n in range(1, len(names)):
                 key += "_" + str(names[n])
-            if len(str(a)) < 250:
-                entry = ResourceGroupCompose.MetadataEntryCompose(key=key, value=str(a).strip())
-                out.append(entry)
+            entry = ResourceGroupCompose.MetadataEntryCompose(key=key, value=str(a).strip())
+            out.append(entry)
 
     if isinstance(a, dict):
         for n in a:
