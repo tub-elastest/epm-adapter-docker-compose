@@ -1,5 +1,6 @@
 import docker
 
+
 from client_pb2 import ResourceGroupCompose
 
 
@@ -114,19 +115,17 @@ def execute_on_container(container_id, command):
     client = docker.APIClient(base_url="unix://var/run/docker.sock")
     cmd = client.exec_create(container_id, command, stdout=True, stderr=True, stdin=True)
     output = client.exec_start(cmd["Id"])
+    return output
 
 
-def download_file_from_container(container_id):
+def download_file_from_container(container_id, path):
     client = docker.APIClient(base_url="unix://var/run/docker.sock")
-    archive = client.get_archive(container_id, "docker-compose-client/README.md")
-    return archive
+    archive = client.get_archive(container_id, path)
+    return archive[0].read()
 
 
-def upload_file_to_container(container_id, archive):
-    client = docker.APIClient(base_url="unix://var/run/docker.sock")
-    client.get_archive(container_id, archive)
-
-
-def upload_file_to_container_using_path(container_id):
-    return
+def upload_file_to_container(container_id, path, archive):
+    client = docker.from_env()
+    container = client.containers.get(container_id)
+    container.put_archive(path, archive)
 

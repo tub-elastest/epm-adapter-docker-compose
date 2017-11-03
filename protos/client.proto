@@ -2,12 +2,26 @@ syntax = "proto3";
 
 option java_multiple_files = true;
 
-message ComposePackage {
-    bytes compose_file = 1;
+message FileMessage {
+    bytes file = 1;
 }
 
-message ComposeIdentifier {
-    string compose_id = 1;
+message ResourceIdentifier {
+    string resource_id = 1;
+}
+
+message DockerRuntimeMessage {
+    string resource_id = 1;
+    string property = 2;
+    bytes file = 3;
+}
+
+message StringResponse {
+    string response = 1;
+}
+
+message StartStopMessage{
+    string container_id = 1;
 }
 
 message Empty {
@@ -51,7 +65,17 @@ message ResourceGroupCompose {
 
 service ComposeHandler {
 
-    rpc UpCompose(ComposePackage) returns (ResourceGroupCompose) {}
+    rpc UpCompose(FileMessage) returns (ResourceGroupCompose) {}
 
-    rpc RemoveCompose(ComposeIdentifier) returns (Empty) {}
+    rpc RemoveCompose(ResourceIdentifier) returns (Empty) {}
+
+    rpc StopContainer(ResourceIdentifier) returns (Empty) {}
+
+    rpc StartContainer(ResourceIdentifier) returns (Empty) {}
+
+    rpc ExecuteCommand(DockerRuntimeMessage) returns (StringResponse) {}
+
+    rpc DownloadFile(DockerRuntimeMessage) returns (FileMessage) {}
+
+    rpc UploadFile(DockerRuntimeMessage) returns (Empty) {}
 }

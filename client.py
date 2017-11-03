@@ -14,7 +14,6 @@ import yaml
 import tempfile
 import epm_utils
 
-
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 
@@ -26,7 +25,7 @@ class ComposeHandlerService(client_pb2_grpc.ComposeHandlerServicer):
             os.mkdir(default_packages_path)
 
         temp = tempfile.NamedTemporaryFile(delete=True)
-        temp.write(request.compose_file)
+        temp.write(request.file)
         package = tarfile.open(temp.name, "r")
 
         metadata = yaml.load(package.extractfile("metadata.yaml").read())
@@ -48,13 +47,42 @@ class ComposeHandlerService(client_pb2_grpc.ComposeHandlerServicer):
 
     def RemoveCompose(self, request, context):
 
-        compose_id = request.compose_id
+        compose_id = request.resource_id
         compose_path = os.path.dirname(__file__) + "/packages/" + compose_id
         compose_handler.rm(project_path=compose_path)
 
         os.remove(compose_path + "/docker-compose.yml")
         os.rmdir(compose_path)
 
+        return client_pb2.Empty()
+
+    def StartContainer(self, request, context):
+        container_id = request.resource_id
+        docker_handler.start_container(container_id)
+        return client_pb2.Empty()
+
+    def StopContainer(self, request, context):
+        container_id = request.resource_id
+        docker_handler.stop_container(container_id)
+        return client_pb2.Empty()
+
+    def ExecuteCommand(self, request, context):
+        container_id = request.resource_id
+        command = request.property
+        output = docker_handler.execute_on_container(container_id, command)
+        return client_pb2.StringResponse(response=output)
+
+    def DownloadFile(self, request, context):
+        container_id = request.resource_id
+        path = request.property
+        output = docker_handler.download_file_from_container(container_id, path)
+        return client_pb2.FileMessage(file=output)
+
+    def UploadFile(self, request, context):
+        container_id = request.resource_id
+        path = request.property
+        file = request.file
+        docker_handler.upload_file_to_container(container_id, path, file)
         return client_pb2.Empty()
 
 
