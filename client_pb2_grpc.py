@@ -29,6 +29,16 @@ class ComposeHandlerStub(object):
         request_serializer=client__pb2.ResourceIdentifier.SerializeToString,
         response_deserializer=client__pb2.Empty.FromString,
         )
+    self.CheckIfContainerExists = channel.unary_unary(
+        '/ComposeHandler/CheckIfContainerExists',
+        request_serializer=client__pb2.ResourceIdentifier.SerializeToString,
+        response_deserializer=client__pb2.StringResponse.FromString,
+        )
+    self.CheckIfContainerRunning = channel.unary_unary(
+        '/ComposeHandler/CheckIfContainerRunning',
+        request_serializer=client__pb2.ResourceIdentifier.SerializeToString,
+        response_deserializer=client__pb2.StringResponse.FromString,
+        )
     self.StartContainer = channel.unary_unary(
         '/ComposeHandler/StartContainer',
         request_serializer=client__pb2.ResourceIdentifier.SerializeToString,
@@ -70,6 +80,20 @@ class ComposeHandlerServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def StopContainer(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def CheckIfContainerExists(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def CheckIfContainerRunning(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -121,6 +145,16 @@ def add_ComposeHandlerServicer_to_server(servicer, server):
           servicer.StopContainer,
           request_deserializer=client__pb2.ResourceIdentifier.FromString,
           response_serializer=client__pb2.Empty.SerializeToString,
+      ),
+      'CheckIfContainerExists': grpc.unary_unary_rpc_method_handler(
+          servicer.CheckIfContainerExists,
+          request_deserializer=client__pb2.ResourceIdentifier.FromString,
+          response_serializer=client__pb2.StringResponse.SerializeToString,
+      ),
+      'CheckIfContainerRunning': grpc.unary_unary_rpc_method_handler(
+          servicer.CheckIfContainerRunning,
+          request_deserializer=client__pb2.ResourceIdentifier.FromString,
+          response_serializer=client__pb2.StringResponse.SerializeToString,
       ),
       'StartContainer': grpc.unary_unary_rpc_method_handler(
           servicer.StartContainer,

@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='client.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\x0c\x63lient.proto\"\x1b\n\x0b\x46ileMessage\x12\x0c\n\x04\x66ile\x18\x01 \x01(\x0c\")\n\x12ResourceIdentifier\x12\x13\n\x0bresource_id\x18\x01 \x01(\t\"K\n\x14\x44ockerRuntimeMessage\x12\x13\n\x0bresource_id\x18\x01 \x01(\t\x12\x10\n\x08property\x18\x02 \x01(\t\x12\x0c\n\x04\x66ile\x18\x03 \x01(\x0c\"\"\n\x0eStringResponse\x12\x10\n\x08response\x18\x01 \x01(\t\"(\n\x10StartStopMessage\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x07\n\x05\x45mpty\"\xa8\x04\n\x14ResourceGroupCompose\x12\x0c\n\x04name\x18\x01 \x01(\t\x12.\n\x04pops\x18\x02 \x03(\x0b\x32 .ResourceGroupCompose.PoPCompose\x12\x36\n\x08networks\x18\x03 \x03(\x0b\x32$.ResourceGroupCompose.NetworkCompose\x12.\n\x04vdus\x18\x04 \x03(\x0b\x32 .ResourceGroupCompose.VDUCompose\x1a\x35\n\nPoPCompose\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x19\n\x11interfaceEndpoint\x18\x02 \x01(\t\x1a\x32\n\x14MetadataEntryCompose\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x1aP\n\x0eNetworkCompose\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07poPName\x18\x02 \x01(\t\x12\x0c\n\x04\x63idr\x18\x03 \x01(\t\x12\x11\n\tnetworkId\x18\x04 \x01(\t\x1a\xac\x01\n\nVDUCompose\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x11\n\timageName\x18\x02 \x01(\t\x12\x0f\n\x07netName\x18\x03 \x01(\t\x12\x0f\n\x07poPName\x18\x04 \x01(\t\x12\x11\n\tcomputeId\x18\x05 \x01(\t\x12\n\n\x02ip\x18\x06 \x01(\t\x12<\n\x08metadata\x18\x07 \x03(\x0b\x32*.ResourceGroupCompose.MetadataEntryCompose2\xf7\x02\n\x0e\x43omposeHandler\x12\x32\n\tUpCompose\x12\x0c.FileMessage\x1a\x15.ResourceGroupCompose\"\x00\x12.\n\rRemoveCompose\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12.\n\rStopContainer\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12/\n\x0eStartContainer\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12:\n\x0e\x45xecuteCommand\x12\x15.DockerRuntimeMessage\x1a\x0f.StringResponse\"\x00\x12\x35\n\x0c\x44ownloadFile\x12\x15.DockerRuntimeMessage\x1a\x0c.FileMessage\"\x00\x12-\n\nUploadFile\x12\x15.DockerRuntimeMessage\x1a\x06.Empty\"\x00\x42\x02P\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x0c\x63lient.proto\"\x1b\n\x0b\x46ileMessage\x12\x0c\n\x04\x66ile\x18\x01 \x01(\x0c\")\n\x12ResourceIdentifier\x12\x13\n\x0bresource_id\x18\x01 \x01(\t\"K\n\x14\x44ockerRuntimeMessage\x12\x13\n\x0bresource_id\x18\x01 \x01(\t\x12\x10\n\x08property\x18\x02 \x01(\t\x12\x0c\n\x04\x66ile\x18\x03 \x01(\x0c\"\"\n\x0eStringResponse\x12\x10\n\x08response\x18\x01 \x01(\t\"(\n\x10StartStopMessage\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x07\n\x05\x45mpty\"\xa8\x04\n\x14ResourceGroupCompose\x12\x0c\n\x04name\x18\x01 \x01(\t\x12.\n\x04pops\x18\x02 \x03(\x0b\x32 .ResourceGroupCompose.PoPCompose\x12\x36\n\x08networks\x18\x03 \x03(\x0b\x32$.ResourceGroupCompose.NetworkCompose\x12.\n\x04vdus\x18\x04 \x03(\x0b\x32 .ResourceGroupCompose.VDUCompose\x1a\x35\n\nPoPCompose\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x19\n\x11interfaceEndpoint\x18\x02 \x01(\t\x1a\x32\n\x14MetadataEntryCompose\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x1aP\n\x0eNetworkCompose\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07poPName\x18\x02 \x01(\t\x12\x0c\n\x04\x63idr\x18\x03 \x01(\t\x12\x11\n\tnetworkId\x18\x04 \x01(\t\x1a\xac\x01\n\nVDUCompose\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x11\n\timageName\x18\x02 \x01(\t\x12\x0f\n\x07netName\x18\x03 \x01(\t\x12\x0f\n\x07poPName\x18\x04 \x01(\t\x12\x11\n\tcomputeId\x18\x05 \x01(\t\x12\n\n\x02ip\x18\x06 \x01(\t\x12<\n\x08metadata\x18\x07 \x03(\x0b\x32*.ResourceGroupCompose.MetadataEntryCompose2\xfc\x03\n\x0e\x43omposeHandler\x12\x32\n\tUpCompose\x12\x0c.FileMessage\x1a\x15.ResourceGroupCompose\"\x00\x12.\n\rRemoveCompose\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12.\n\rStopContainer\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12@\n\x16\x43heckIfContainerExists\x12\x13.ResourceIdentifier\x1a\x0f.StringResponse\"\x00\x12\x41\n\x17\x43heckIfContainerRunning\x12\x13.ResourceIdentifier\x1a\x0f.StringResponse\"\x00\x12/\n\x0eStartContainer\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12:\n\x0e\x45xecuteCommand\x12\x15.DockerRuntimeMessage\x1a\x0f.StringResponse\"\x00\x12\x35\n\x0c\x44ownloadFile\x12\x15.DockerRuntimeMessage\x1a\x0c.FileMessage\"\x00\x12-\n\nUploadFile\x12\x15.DockerRuntimeMessage\x1a\x06.Empty\"\x00\x42\x02P\x01\x62\x06proto3')
 )
 
 
@@ -575,7 +575,7 @@ _COMPOSEHANDLER = _descriptor.ServiceDescriptor(
   index=0,
   options=None,
   serialized_start=808,
-  serialized_end=1183,
+  serialized_end=1316,
   methods=[
   _descriptor.MethodDescriptor(
     name='UpCompose',
@@ -605,9 +605,27 @@ _COMPOSEHANDLER = _descriptor.ServiceDescriptor(
     options=None,
   ),
   _descriptor.MethodDescriptor(
+    name='CheckIfContainerExists',
+    full_name='ComposeHandler.CheckIfContainerExists',
+    index=3,
+    containing_service=None,
+    input_type=_RESOURCEIDENTIFIER,
+    output_type=_STRINGRESPONSE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='CheckIfContainerRunning',
+    full_name='ComposeHandler.CheckIfContainerRunning',
+    index=4,
+    containing_service=None,
+    input_type=_RESOURCEIDENTIFIER,
+    output_type=_STRINGRESPONSE,
+    options=None,
+  ),
+  _descriptor.MethodDescriptor(
     name='StartContainer',
     full_name='ComposeHandler.StartContainer',
-    index=3,
+    index=5,
     containing_service=None,
     input_type=_RESOURCEIDENTIFIER,
     output_type=_EMPTY,
@@ -616,7 +634,7 @@ _COMPOSEHANDLER = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='ExecuteCommand',
     full_name='ComposeHandler.ExecuteCommand',
-    index=4,
+    index=6,
     containing_service=None,
     input_type=_DOCKERRUNTIMEMESSAGE,
     output_type=_STRINGRESPONSE,
@@ -625,7 +643,7 @@ _COMPOSEHANDLER = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='DownloadFile',
     full_name='ComposeHandler.DownloadFile',
-    index=5,
+    index=7,
     containing_service=None,
     input_type=_DOCKERRUNTIMEMESSAGE,
     output_type=_FILEMESSAGE,
@@ -634,7 +652,7 @@ _COMPOSEHANDLER = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='UploadFile',
     full_name='ComposeHandler.UploadFile',
-    index=6,
+    index=8,
     containing_service=None,
     input_type=_DOCKERRUNTIMEMESSAGE,
     output_type=_EMPTY,
@@ -680,6 +698,16 @@ try:
           request_serializer=ResourceIdentifier.SerializeToString,
           response_deserializer=Empty.FromString,
           )
+      self.CheckIfContainerExists = channel.unary_unary(
+          '/ComposeHandler/CheckIfContainerExists',
+          request_serializer=ResourceIdentifier.SerializeToString,
+          response_deserializer=StringResponse.FromString,
+          )
+      self.CheckIfContainerRunning = channel.unary_unary(
+          '/ComposeHandler/CheckIfContainerRunning',
+          request_serializer=ResourceIdentifier.SerializeToString,
+          response_deserializer=StringResponse.FromString,
+          )
       self.StartContainer = channel.unary_unary(
           '/ComposeHandler/StartContainer',
           request_serializer=ResourceIdentifier.SerializeToString,
@@ -721,6 +749,20 @@ try:
       raise NotImplementedError('Method not implemented!')
 
     def StopContainer(self, request, context):
+      # missing associated documentation comment in .proto file
+      pass
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def CheckIfContainerExists(self, request, context):
+      # missing associated documentation comment in .proto file
+      pass
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def CheckIfContainerRunning(self, request, context):
       # missing associated documentation comment in .proto file
       pass
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -773,6 +815,16 @@ try:
             request_deserializer=ResourceIdentifier.FromString,
             response_serializer=Empty.SerializeToString,
         ),
+        'CheckIfContainerExists': grpc.unary_unary_rpc_method_handler(
+            servicer.CheckIfContainerExists,
+            request_deserializer=ResourceIdentifier.FromString,
+            response_serializer=StringResponse.SerializeToString,
+        ),
+        'CheckIfContainerRunning': grpc.unary_unary_rpc_method_handler(
+            servicer.CheckIfContainerRunning,
+            request_deserializer=ResourceIdentifier.FromString,
+            response_serializer=StringResponse.SerializeToString,
+        ),
         'StartContainer': grpc.unary_unary_rpc_method_handler(
             servicer.StartContainer,
             request_deserializer=ResourceIdentifier.FromString,
@@ -819,6 +871,14 @@ try:
       # missing associated documentation comment in .proto file
       pass
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def CheckIfContainerExists(self, request, context):
+      # missing associated documentation comment in .proto file
+      pass
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def CheckIfContainerRunning(self, request, context):
+      # missing associated documentation comment in .proto file
+      pass
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def StartContainer(self, request, context):
       # missing associated documentation comment in .proto file
       pass
@@ -860,6 +920,16 @@ try:
       pass
       raise NotImplementedError()
     StopContainer.future = None
+    def CheckIfContainerExists(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      # missing associated documentation comment in .proto file
+      pass
+      raise NotImplementedError()
+    CheckIfContainerExists.future = None
+    def CheckIfContainerRunning(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      # missing associated documentation comment in .proto file
+      pass
+      raise NotImplementedError()
+    CheckIfContainerRunning.future = None
     def StartContainer(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       # missing associated documentation comment in .proto file
       pass
@@ -889,6 +959,8 @@ try:
     file not marked beta) for all further purposes. This function was
     generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
     request_deserializers = {
+      ('ComposeHandler', 'CheckIfContainerExists'): ResourceIdentifier.FromString,
+      ('ComposeHandler', 'CheckIfContainerRunning'): ResourceIdentifier.FromString,
       ('ComposeHandler', 'DownloadFile'): DockerRuntimeMessage.FromString,
       ('ComposeHandler', 'ExecuteCommand'): DockerRuntimeMessage.FromString,
       ('ComposeHandler', 'RemoveCompose'): ResourceIdentifier.FromString,
@@ -898,6 +970,8 @@ try:
       ('ComposeHandler', 'UploadFile'): DockerRuntimeMessage.FromString,
     }
     response_serializers = {
+      ('ComposeHandler', 'CheckIfContainerExists'): StringResponse.SerializeToString,
+      ('ComposeHandler', 'CheckIfContainerRunning'): StringResponse.SerializeToString,
       ('ComposeHandler', 'DownloadFile'): FileMessage.SerializeToString,
       ('ComposeHandler', 'ExecuteCommand'): StringResponse.SerializeToString,
       ('ComposeHandler', 'RemoveCompose'): Empty.SerializeToString,
@@ -907,6 +981,8 @@ try:
       ('ComposeHandler', 'UploadFile'): Empty.SerializeToString,
     }
     method_implementations = {
+      ('ComposeHandler', 'CheckIfContainerExists'): face_utilities.unary_unary_inline(servicer.CheckIfContainerExists),
+      ('ComposeHandler', 'CheckIfContainerRunning'): face_utilities.unary_unary_inline(servicer.CheckIfContainerRunning),
       ('ComposeHandler', 'DownloadFile'): face_utilities.unary_unary_inline(servicer.DownloadFile),
       ('ComposeHandler', 'ExecuteCommand'): face_utilities.unary_unary_inline(servicer.ExecuteCommand),
       ('ComposeHandler', 'RemoveCompose'): face_utilities.unary_unary_inline(servicer.RemoveCompose),
@@ -926,6 +1002,8 @@ try:
     file not marked beta) for all further purposes. This function was
     generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
     request_serializers = {
+      ('ComposeHandler', 'CheckIfContainerExists'): ResourceIdentifier.SerializeToString,
+      ('ComposeHandler', 'CheckIfContainerRunning'): ResourceIdentifier.SerializeToString,
       ('ComposeHandler', 'DownloadFile'): DockerRuntimeMessage.SerializeToString,
       ('ComposeHandler', 'ExecuteCommand'): DockerRuntimeMessage.SerializeToString,
       ('ComposeHandler', 'RemoveCompose'): ResourceIdentifier.SerializeToString,
@@ -935,6 +1013,8 @@ try:
       ('ComposeHandler', 'UploadFile'): DockerRuntimeMessage.SerializeToString,
     }
     response_deserializers = {
+      ('ComposeHandler', 'CheckIfContainerExists'): StringResponse.FromString,
+      ('ComposeHandler', 'CheckIfContainerRunning'): StringResponse.FromString,
       ('ComposeHandler', 'DownloadFile'): FileMessage.FromString,
       ('ComposeHandler', 'ExecuteCommand'): StringResponse.FromString,
       ('ComposeHandler', 'RemoveCompose'): Empty.FromString,
@@ -944,6 +1024,8 @@ try:
       ('ComposeHandler', 'UploadFile'): Empty.FromString,
     }
     cardinalities = {
+      'CheckIfContainerExists': cardinality.Cardinality.UNARY_UNARY,
+      'CheckIfContainerRunning': cardinality.Cardinality.UNARY_UNARY,
       'DownloadFile': cardinality.Cardinality.UNARY_UNARY,
       'ExecuteCommand': cardinality.Cardinality.UNARY_UNARY,
       'RemoveCompose': cardinality.Cardinality.UNARY_UNARY,

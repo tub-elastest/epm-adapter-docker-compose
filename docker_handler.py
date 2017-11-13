@@ -1,6 +1,5 @@
 import docker
 
-
 from client_pb2 import ResourceGroupCompose
 
 
@@ -98,8 +97,17 @@ def recursive_parsing(data, names, out):
             recursive_parsing(data, new_names, out)
 
 
-def stop_container(container_id):
+def check_container_exists(container_id, all):
+    client = docker.from_env()
+    filters = {"id": container_id}
+    found = len(client.containers.list(all=all, filters=filters))
+    if found > 0:
+        return True
+    else:
+        return False
 
+
+def stop_container(container_id):
     client = docker.from_env()
     container = client.containers.get(container_id)
     container.stop()
@@ -128,4 +136,3 @@ def upload_file_to_container(container_id, path, archive):
     client = docker.from_env()
     container = client.containers.get(container_id)
     container.put_archive(path, archive)
-

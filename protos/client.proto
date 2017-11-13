@@ -71,6 +71,10 @@ service ComposeHandler {
 
     rpc StopContainer(ResourceIdentifier) returns (Empty) {}
 
+    rpc CheckIfContainerExists(ResourceIdentifier) returns (StringResponse) {}
+
+    rpc CheckIfContainerRunning(ResourceIdentifier) returns (StringResponse) {}
+
     rpc StartContainer(ResourceIdentifier) returns (Empty) {}
 
     rpc ExecuteCommand(DockerRuntimeMessage) returns (StringResponse) {}

@@ -45,6 +45,18 @@ class ComposeHandlerService(client_pb2_grpc.ComposeHandlerServicer):
         rg = docker_handler.convert_to_resource_group(container_ids, resource_group_name=package_name)
         return rg
 
+    def CheckIfContainerExists(self, request, context):
+
+        compose_id = request.resource_id
+        result = str(docker_handler.check_container_exists(compose_id, True))
+        return client_pb2.StringResponse(response=result)
+
+    def CheckIfContainerRunning(self, request, context):
+
+        compose_id = request.resource_id
+        result = str(docker_handler.check_container_exists(compose_id, False))
+        return client_pb2.StringResponse(response=result)
+
     def RemoveCompose(self, request, context):
 
         compose_id = request.resource_id
