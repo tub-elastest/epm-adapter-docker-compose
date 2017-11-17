@@ -20,6 +20,17 @@ The client is implemented using **python2.7** and the Docker-Compose, Docker and
 
 The client has to be started using the **client.py** file. The default port of the client is 50051.
 
+```bash
+python client.py
+```
+
+If the EPM is already running you can make the client register itself on the EPM automatically and 
+you won't need to register a pop manually.
+
+```yaml
+python client.py --register-pop <epm-ip> <compose-client-ip>
+```
+
 ## Launching the client in a docker container
 
 To start the client in a docker container run this command:
@@ -27,28 +38,13 @@ To start the client in a docker container run this command:
 docker run -v /var/run/docker.sock:/var/run/docker.sock -p 50051:50051 --expose 50051 -i -t epm-compose-client
 ```
 
-## gRPC and building the protobuffers
+## Launching the client and the EPM in a docker containers
 
-The docker-compose client connects to the Elastic Platform Manager through gRPC. 
-The protocol buffers are defined in the protos/client.proto file. There are two types defined: Messages and services. 
-Messages represent the structure of the data transported using gRPC and the services represent the connection points.
-
-There are two ways to build the modules for the python client :
-
-1) Using the protocol buffer from python (for proto3 use python 2.7)
+If you want to start both the Elastest Platform Manager and the Docker-Compose client you can run:
 
 ```bash
-python -m grpc_tools.protoc -I protos/ --python_out=. --grpc_python_out=. protos/client.proto
+docker-compose up
 ```
 
-2) Installing the protocol buffer : https://github.com/grpc/grpc/blob/master/INSTALL.md
-
-### Defining the proto file
-
-This is the guide for defining **proto3** files: https://developers.google.com/protocol-buffers/docs/proto3
-
-This is an example of a **proto3** file: https://github.com/grpc/grpc/blob/v1.6.x/examples/protos/route_guide.proto 
-
-### Using the generated modules
-
-This is an example of creating client / server code : https://grpc.io/docs/tutorials/basic/python.html
+This will create the docker container for both the client and the EPM and will also automatically register 
+the client to the EPM, so you can start using them straight away.

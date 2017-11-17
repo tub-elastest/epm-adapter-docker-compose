@@ -103,13 +103,13 @@ class ComposeHandlerService(client_pb2_grpc.ComposeHandlerServicer):
         return client_pb2.Empty()
 
 
-def serve(port="50051", register=False):
+def serve(port="50051", register=False, ip="elastest-epm", compose_ip="epm-docker-compose-driver"):
     print("Starting server...")
     print("Listening on port: " + port)
 
     if register:
         print("Trying to register pop to EPM container...")
-        epm_utils.register_pop()
+        epm_utils.register_pop(ip, compose_ip)
 
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     client_pb2_grpc.add_ComposeHandlerServicer_to_server(
@@ -125,6 +125,9 @@ def serve(port="50051", register=False):
 
 if __name__ == '__main__':
     if "--register-pop" in sys.argv:
-        serve(register=True)
+        if len(sys.argv) == 4:
+            serve(register=True, ip=sys.argv[2], compose_ip=sys.argv[3])
+        else:
+            serve(register=True)
     else:
         serve()
