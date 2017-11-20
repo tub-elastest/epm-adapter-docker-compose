@@ -82,25 +82,34 @@ class ComposeHandlerService(client_pb2_grpc.ComposeHandlerServicer):
 
     def ExecuteCommand(self, request, context):
         container_id = request.resource_id
-        command = request.property
+        command = request.property[0]
         print("Executing command " + command)
         output = docker_handler.execute_on_container(container_id, command)
         return client_pb2.StringResponse(response=output)
 
     def DownloadFile(self, request, context):
         container_id = request.resource_id
-        path = request.property
+        path = request.property[0]
         print("Downloading file " + path)
         output = docker_handler.download_file_from_container(container_id, path)
         return client_pb2.FileMessage(file=output)
 
     def UploadFile(self, request, context):
+
         container_id = request.resource_id
-        path = request.property
-        print("Uploading a file to " + path)
-        file = request.file
-        docker_handler.upload_file_to_container(container_id, path, file)
-        return client_pb2.Empty()
+        type = request.property[0]
+        if(type == "withPath"):
+            remotePath = request.property[2]
+            hostPath = request.property[1]
+            print("Uploading a file " + hostPath + " to " + remotePath)
+            docker_handler.upload_file_to_container_from_path(container_id, hostPath, remotePath)
+            return client_pb2.Empty()
+        else:
+            path = request.property[0]
+            print("Uploading a file to " + path)
+            file = request.file
+            docker_handler.upload_file_to_container(container_id, path, file)
+            return client_pb2.Empty()
 
 
 def serve(port="50051", register=False, ip="elastest-epm", compose_ip="epm-docker-compose-driver"):

@@ -12,7 +12,7 @@ message ResourceIdentifier {
 
 message DockerRuntimeMessage {
     string resource_id = 1;
-    string property = 2;
+    repeated string property = 2;
     bytes file = 3;
 }
 

@@ -8,20 +8,6 @@ import client_pb2_grpc
 
 
 class TestClient(unittest.TestCase):
-    def test_up_compose(self):
-        channel = grpc.insecure_channel("localhost:50051")
-        stub = client_pb2_grpc.ComposeHandlerStub(channel)
-
-        f = open("compose-package.tar", "rb")
-        dc = client_pb2.FileMessage(file=f.read())
-        f.close()
-        rg = stub.UpCompose(dc)
-        print(rg)
-
-        id = client_pb2.ResourceIdentifier(resource_id="test-package")
-        stub.RemoveCompose(id)
-
-        return
 
     def test_runtime_full(self):
         channel = grpc.insecure_channel("localhost:50051")
@@ -44,17 +30,21 @@ class TestClient(unittest.TestCase):
 
         # Upload file
         f = open("compose-package.tar", "rb")
-        upld_message = client_pb2.DockerRuntimeMessage(resource_id=container_id, property="/", file=f.read())
+        upld_message = client_pb2.DockerRuntimeMessage(resource_id=container_id, property=["/"], file=f.read())
         stub.UploadFile(upld_message)
         f.close()
 
+        #Upload file using path
+        upld_message_with_path = client_pb2.DockerRuntimeMessage(resource_id=container_id, property=["withPath","README.md", "/"])
+        stub.UploadFile(upld_message_with_path)
+
         # Execute command
-        cmd = client_pb2.DockerRuntimeMessage(resource_id=container_id, property="ls", file=None)
+        cmd = client_pb2.DockerRuntimeMessage(resource_id=container_id, property=["ls"], file=None)
         response_string = stub.ExecuteCommand(cmd)
         print(response_string.response)
 
         # Download file
-        dwnld_message = client_pb2.DockerRuntimeMessage(resource_id=container_id, property="/metadata.yaml", file=None)
+        dwnld_message = client_pb2.DockerRuntimeMessage(resource_id=container_id, property=["/metadata.yaml"], file=None)
         output = stub.DownloadFile(dwnld_message)
         file_like = io.BytesIO(output.file)
         archive = tarfile.open(fileobj=file_like, mode="r")

@@ -1,4 +1,6 @@
 import docker
+import os
+import tarfile
 
 from client_pb2 import ResourceGroupCompose
 
@@ -136,3 +138,21 @@ def upload_file_to_container(container_id, path, archive):
     client = docker.from_env()
     container = client.containers.get(container_id)
     container.put_archive(path, archive)
+
+
+def upload_file_to_container_from_path(container_id, hostPath, remotePath):
+    # Need to find a better solution
+
+    tar = tarfile.open(name="tmp.tar", mode="w")
+    tar.add(hostPath)
+    tar.close()
+
+    f = open("tmp.tar", "rb")
+
+    client = docker.from_env()
+    container = client.containers.get(container_id)
+    container.put_archive(remotePath, f.read())
+    f.close()
+    os.remove("tmp.tar")
+
+    return
