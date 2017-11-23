@@ -1,8 +1,8 @@
-import docker
 import os
 import tarfile
+import docker
 
-from client_pb2 import ResourceGroupCompose
+from src.compose_adapter.grpc_connector.client_pb2 import ResourceGroupCompose
 
 
 def convert_to_resource_group(container_ids, resource_group_name):

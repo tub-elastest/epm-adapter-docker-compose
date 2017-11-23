@@ -1,19 +1,16 @@
-import unittest
-import grpc
-import tarfile
 import io
+import tarfile
+import unittest
 
-import client_pb2
-import client_pb2_grpc
+import grpc
+from src.compose_adapter.grpc_connector import client_pb2_grpc
+from src.compose_adapter.grpc_connector import client_pb2
 
-
-class TestClient(unittest.TestCase):
-
-    def test_runtime_full(self):
+def test_runtime_full():
         channel = grpc.insecure_channel("localhost:50051")
         stub = client_pb2_grpc.ComposeHandlerStub(channel)
 
-        f = open("compose-package.tar", "rb")
+        f = open("tests/compose-package.tar", "rb")
         dc = client_pb2.FileMessage(file=f.read())
         f.close()
         rg = stub.UpCompose(dc)
@@ -29,13 +26,13 @@ class TestClient(unittest.TestCase):
         stub.StartContainer(r_id)
 
         # Upload file
-        f = open("compose-package.tar", "rb")
+        f = open("tests/compose-package.tar", "rb")
         upld_message = client_pb2.DockerRuntimeMessage(resource_id=container_id, property=["/"], file=f.read())
         stub.UploadFile(upld_message)
         f.close()
 
         #Upload file using path
-        upld_message_with_path = client_pb2.DockerRuntimeMessage(resource_id=container_id, property=["withPath","README.md", "/"])
+        upld_message_with_path = client_pb2.DockerRuntimeMessage(resource_id=container_id, property=["withPath", "README.md", "/"])
         stub.UploadFile(upld_message_with_path)
 
         # Execute command
@@ -57,4 +54,4 @@ class TestClient(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    test_runtime_full()

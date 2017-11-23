@@ -1,7 +1,7 @@
 version: '3'
 services:
     epm:
-        container_name: elastest-epm
+        container_name: test-epm
         image: elastest/epm
         environment:
             - ET_EDM_ALLUXIO_API=http://edm-alluxio-master:19999/

@@ -1,18 +1,17 @@
-import time
 import os
 import sys
 import tarfile
+import tempfile
+import time
+import yaml
 
 import grpc
+import src.compose_adapter.grpc_connector.client_pb2_grpc as client_pb2_grpc
 from concurrent import futures
 
-import client_pb2_grpc
-import client_pb2
-import compose_handler
-import docker_handler
-import yaml
-import tempfile
-import epm_utils
+import src.compose_adapter.grpc_connector.client_pb2 as client_pb2
+from src.compose_adapter.utils import epm_utils as utils
+from src.compose_adapter.handlers import compose_handler, docker_handler
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
@@ -118,7 +117,7 @@ def serve(port="50051", register=False, ip="elastest-epm", compose_ip="epm-docke
 
     if register:
         print("Trying to register pop to EPM container...")
-        epm_utils.register_pop(ip, compose_ip)
+        utils.register_pop(ip, compose_ip)
 
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     client_pb2_grpc.add_ComposeHandlerServicer_to_server(
