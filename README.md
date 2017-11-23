@@ -21,14 +21,15 @@ The client is implemented using **python2.7** and the Docker-Compose, Docker and
 The client has to be started using the **client.py** file. The default port of the client is 50051.
 
 ```bash
-python client.py
+python run.py
 ```
 
 If the EPM is already running you can make the client register itself on the EPM automatically and 
 you won't need to register a pop manually.
 
 ```yaml
-python client.py --register-pop <epm-ip> <compose-client-ip>
+python run.py --register-pop <epm-ip> <compose-client-ip>
+
 ```
 
 ## Launching the client in a docker container

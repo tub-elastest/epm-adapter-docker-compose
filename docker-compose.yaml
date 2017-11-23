@@ -14,7 +14,7 @@ services:
     epm-docker-compose-driver:
         container_name: epm-docker-compose-driver
         build: .
-        entrypoint: python client.py --register-pop
+        entrypoint: python run.py --register-pop
         depends_on:
             - elastest-platform-manager
         volumes:

@@ -14,4 +14,4 @@ ADD . docker-compose-client
 
 WORKDIR docker-compose-client
 
-ENTRYPOINT python client.py
+ENTRYPOINT python run.py
