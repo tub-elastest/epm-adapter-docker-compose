@@ -9,7 +9,7 @@ node('docker'){
 
             stage "Build image - Package"
                 echo ("Building docker image...")
-                def myimage = docker.build("elastest/epm-docker-compose-driver")
+                def myimage = docker.build("elastest/epm-adapter-docker-compose:latest")
 
             stage "Run image"
                 echo "Run the image..."
@@ -23,7 +23,7 @@ node('docker'){
                 echo ("Publishing as all tests succeeded...")
                 //this is work arround as withDockerRegistry is not working properly
                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'elastestci-dockerhub',
-                              usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
                     sh 'docker login -u "$USERNAME" -p "$PASSWORD"'
                     myimage.push()
                 }
