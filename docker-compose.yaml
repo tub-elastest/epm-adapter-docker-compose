@@ -12,7 +12,7 @@ services:
         networks:
             - elastest
     epm-docker-compose-driver:
-        container_name: epm-docker-compose-driver
+        container_name: elastest-epm-adapter-docker-compose
         build: .
         entrypoint: python run.py --register-pop
         depends_on:

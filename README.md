@@ -1,51 +1,73 @@
-# Elastest Platform Manager Docker-Compose client
+[![][ElasTest Logo]][ElasTest]
 
-The Docker-Compose client for the EPM is used to launch docker-compose instances. The docker-compose file is 
-passed along with an additional Metadata file in a package. 
+Copyright © 2017-2019 [ElasTest]. Licensed under [Apache 2.0 License].
 
-The package has to be a **tar** file and has to have the following structure:
-```bash
-- Metadata.yaml #Simple metadata file that should include the name of the package
-- docker-compose.yml #The docker-compose file
-```
+elastest-epm-adapter-docker-compose (epm-adapter-docker-compose)
+==============================
 
-This is an example **Metadata** file:
-```yaml
-name: example-name
-```
+ElasTest Platform Manager Docker Compose Adapter.
 
-The client is implemented using **python2.7** and the Docker-Compose, Docker and gRPC libraries.
+# What is ElasTest
 
-## Launching the client
+This repository is part of [ElasTest], which is an open source elastic platform
+aimed to simplify end-to-end testing. ElasTest platform is based on three
+principles: i) Test orchestration: Combining intelligently testing units for
+creating a more complete test suite following the “divide and conquer” principle.
+ii) Instrumentation and monitoring: Customizing the SuT (Subject under Test)
+infrastructure so that it reproduces real-world operational behavior and allowing
+to gather relevant information during testing. iii) Test recommendation: Using machine
+learning and cognitive computing for recommending testing actions and providing
+testers with friendly interactive facilities for decision taking.
 
-The client has to be started using the **client.py** file. The default port of the client is 50051.
+# Documentation
 
-```bash
-python run.py
-```
+The [ElasTest] project provides detailed documentation including tutorials,
+installation and development guide.
 
-If the EPM is already running you can make the client register itself on the EPM automatically and 
-you won't need to register a pop manually.
+# Source
+Source code for other ElasTest projects can be found in the [GitHub ElasTest Group].
 
-```yaml
-python run.py --register-pop <epm-ip> <compose-client-ip>
+# News
+Follow us on Twitter @[ElasTest Twitter].
 
-```
+# Contribution policy
+You can contribute to the ElasTest community through bug-reports, bug-fixes,
+new code or new documentation. For contributing to the ElasTest community,
+you can use the issue support of GitHub providing full information about your
+contribution and its value. In your contributions, you must comply with the
+following guidelines
 
-## Launching the client in a docker container
+* You must specify the specific contents of your contribution either through a
+  detailed bug description, through a pull-request or through a patch.
+* You must specify the licensing restrictions of the code you contribute.
+* For newly created code to be incorporated in the ElasTest code-base, you
+  must accept ElasTest to own the code copyright, so that its open source
+  nature is guaranteed.
+* You must justify appropriately the need and value of your contribution. The
+  ElasTest project has no obligations in relation to accepting contributions
+  from third parties.
+* The ElasTest project leaders have the right of asking for further
+  explanations, tests or validations of any code contributed to the community
+  before it being incorporated into the ElasTest code-base. You must be ready
+  to addressing all these kind of concerns before having your code approved.
 
-To start the client in a docker container run this command:
-```bash
-docker run -v /var/run/docker.sock:/var/run/docker.sock -p 50051:50051 --expose 50051 -i -t epm-compose-client
-```
+# Licensing and distribution
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-## Launching the client and the EPM in a docker containers
+  http://www.apache.org/licenses/LICENSE-2.0
 
-If you want to start both the Elastest Platform Manager and the Docker-Compose client you can run:
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
-```bash
-docker-compose up
-```
 
-This will create the docker container for both the client and the EPM and will also automatically register 
-the client to the EPM, so you can start using them straight away.
+[Apache 2.0 License]: http://www.apache.org/licenses/LICENSE-2.0
+[ElasTest]: http://elastest.io/
+[ElasTest Logo]: http://elastest.io/images/logos_elastest/elastest-logo-gray-small.png
+[ElasTest Twitter]: https://twitter.com/elastestio
+[GitHub ElasTest Group]: https://github.com/elastest
+[Bugtracker]: https://github.com/elastest/bugtracker
