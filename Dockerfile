@@ -1,6 +1,5 @@
 FROM python:2.7
 
-
 RUN apt-get update && apt-get install -y build-essential autoconf libtool 
 
 RUN pip install docker-compose grpcio grpcio-tools

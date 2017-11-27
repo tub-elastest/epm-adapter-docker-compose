@@ -111,7 +111,7 @@ class ComposeHandlerService(client_pb2_grpc.ComposeHandlerServicer):
             return client_pb2.Empty()
 
 
-def serve(port="50051", register=False, ip="elastest-epm", compose_ip="epm-docker-compose-driver"):
+def serve(port="50051", register=False, ip="elastest-epm", compose_ip="elastest-epm-adapter-docker-compose"):
     print("Starting server...")
     print("Listening on port: " + port)
 
