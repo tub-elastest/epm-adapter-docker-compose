@@ -13,7 +13,7 @@ node('docker'){
 
             stage "Run image"
                 echo "Run the image..."
-                myimage.withRun("-p 50051:50051 --expose 50051").run()
+                myimage.run("-p 50051:50051 --expose 50051")
 
             stage "Integration tests"
                 echo ("Starting integration tests...")
