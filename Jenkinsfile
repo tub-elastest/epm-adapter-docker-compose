@@ -13,12 +13,12 @@ node('docker'){
 
             stage "Run image"
                 echo "Run the image..."
-                myimage.run("-p 50051:50051 --expose 50051")
+                myimage.run("-p 50051:50051 --expose 50051 -v /var/run/docker.sock:/var/run/docker.sock")
 
             stage "Integration tests"
                 echo ("Starting integration tests...")
                 sh 'pip install grpcio'
-                //sh 'python -m tests.runtime_test'
+                sh 'python -m tests.runtime_test'
 
             stage "Publish"
                 echo ("Publishing as all tests succeeded...")
