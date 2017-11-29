@@ -5,7 +5,7 @@ node('docker'){
 
         mycontainer.inside("-u jenkins -v /var/run/docker.sock:/var/run/docker.sock:rw") {
 
-            git 'https://github.com/mpauls/epm-client-docker-compose'
+            git 'https://github.com/mpauls/epm-adapter-docker-compose'
 
             stage "Build image - Package"
                 echo ("Building docker image...")
