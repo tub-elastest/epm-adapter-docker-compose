@@ -11,9 +11,9 @@ services:
             - 8180:8180
         networks:
             - elastest
-    epm-docker-compose-driver:
+    epm-adapter-docker-compose:
         container_name: elastest-epm-adapter-docker-compose
-        build: .
+        image: elastest/epm-adapter-docker-compose
         entrypoint: python run.py --register-pop
         depends_on:
             - elastest-platform-manager
