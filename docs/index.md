@@ -1,4 +1,4 @@
-# Elastest Platform Manager Docker-Compose client
+# Elastest Platform Manager Docker-Compose adapter
 
 The Docker-Compose client for the EPM is used to launch docker-compose instances. The docker-compose file is 
 passed along with an additional Metadata file in a package. 
