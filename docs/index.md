@@ -1,7 +1,6 @@
 # Elastest Platform Manager Docker-Compose adapter
 
-The Docker-Compose client for the EPM is used to launch docker-compose instances. The docker-compose file is 
-passed along with an additional Metadata file in a package. 
+The Docker-Compose adapter compliant with ElasTest Platform Manager is used to launch docker-compose instances. The docker-compose file is passed along with an additional Metadata file in a package. 
 
 The package has to be a **tar** file and has to have the following structure:
 ```bash
@@ -36,7 +35,7 @@ python run.py --register-pop <epm-ip> <compose-client-ip>
 
 To start the client in a docker container run this command:
 ```bash
-docker run -v /var/run/docker.sock:/var/run/docker.sock -p 50051:50051 --expose 50051 -i -t epm-compose-client
+docker run -v /var/run/docker.sock:/var/run/docker.sock -p 50051:50051 --expose 50051 -i -t epm-adapter-docker-compose
 ```
 
 ## Launching the client and the EPM in a docker containers
