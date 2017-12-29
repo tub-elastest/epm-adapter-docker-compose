@@ -32,7 +32,7 @@ The docker-compose adapter compliant to the EPM is used to launch docker-compose
 	(image metadata, transfer size, etc).
 
 -	**Source of this description**:  
-	[docs repo's `template/` directory](https://github.com/mpauls/epm-adapter-docker-compose/blob/master/docs/Docker-epm-adapter-docker-compose.md) ([history](https://github.com//mpauls/epm-adapter-docker-compose/commits/master/docs/Docker-epm.md))
+	[docs repo's `template/` directory](https://github.com/mpauls/epm-adapter-docker-compose/blob/master/docs/Docker-epm-adapter-docker-compose.md) ([history](https://github.com//mpauls/epm-adapter-docker-compose/commits/master/docs/Docker-epm-adapter-docker-compose.md))
 
 -	**Supported Docker versions**:  
 	[the latest release](https://github.com/docker/docker/releases/latest) (down to 17.03.1 on a best-effort basis)
