@@ -16,8 +16,8 @@ from src.compose_adapter.handlers import compose_handler, docker_handler
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 
-class ComposeHandlerService(client_pb2_grpc.ComposeHandlerServicer):
-    def UpCompose(self, request, context):
+class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
+    def Create(self, request, context):
 
         default_packages_path = os.path.dirname(__file__) + "/packages"
         if not os.path.exists(default_packages_path):
@@ -56,7 +56,7 @@ class ComposeHandlerService(client_pb2_grpc.ComposeHandlerServicer):
         result = str(docker_handler.check_container_exists(compose_id, False))
         return client_pb2.StringResponse(response=result)
 
-    def RemoveCompose(self, request, context):
+    def Remove(self, request, context):
 
         compose_id = request.resource_id
         compose_path = os.path.dirname(__file__) + "/packages/" + compose_id
@@ -120,7 +120,7 @@ def serve(port="50051", register=False, ip="elastest-epm", compose_ip="elastest-
         utils.register_pop(ip, compose_ip)
 
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    client_pb2_grpc.add_ComposeHandlerServicer_to_server(
+    client_pb2_grpc.add_OperationHandlerServicer_to_server(
         ComposeHandlerService(), server)
     server.add_insecure_port('[::]:' + port)
     server.start()
