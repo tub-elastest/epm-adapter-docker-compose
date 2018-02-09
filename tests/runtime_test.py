@@ -8,12 +8,12 @@ from src.compose_adapter.grpc_connector import client_pb2
 
 def test_runtime_full():
         channel = grpc.insecure_channel("localhost:50051")
-        stub = client_pb2_grpc.ComposeHandlerStub(channel)
+        stub = client_pb2_grpc.OperationHandlerStub(channel)
 
         f = open("tests/compose-package.tar", "rb")
         dc = client_pb2.FileMessage(file=f.read())
         f.close()
-        rg = stub.UpCompose(dc)
+        rg = stub.Create(dc)
 
         print(rg)
 
@@ -27,21 +27,21 @@ def test_runtime_full():
 
         # Upload file
         f = open("tests/compose-package.tar", "rb")
-        upld_message = client_pb2.DockerRuntimeMessage(resource_id=container_id, property=["/"], file=f.read())
+        upld_message = client_pb2.RuntimeMessage(resource_id=container_id, property=["/"], file=f.read())
         stub.UploadFile(upld_message)
         f.close()
 
         #Upload file using path
-        upld_message_with_path = client_pb2.DockerRuntimeMessage(resource_id=container_id, property=["withPath", "README.md", "/"])
+        upld_message_with_path = client_pb2.RuntimeMessage(resource_id=container_id, property=["withPath", "README.md", "/"])
         stub.UploadFile(upld_message_with_path)
 
         # Execute command
-        cmd = client_pb2.DockerRuntimeMessage(resource_id=container_id, property=["ls"], file=None)
+        cmd = client_pb2.RuntimeMessage(resource_id=container_id, property=["ls"], file=None)
         response_string = stub.ExecuteCommand(cmd)
         print(response_string.response)
 
         # Download file
-        dwnld_message = client_pb2.DockerRuntimeMessage(resource_id=container_id, property=["/metadata.yaml"], file=None)
+        dwnld_message = client_pb2.RuntimeMessage(resource_id=container_id, property=["/metadata.yaml"], file=None)
         output = stub.DownloadFile(dwnld_message)
         file_like = io.BytesIO(output.file)
         archive = tarfile.open(fileobj=file_like, mode="r")
@@ -50,7 +50,7 @@ def test_runtime_full():
 
         # Down compose
         id = client_pb2.ResourceIdentifier(resource_id="test-package")
-        stub.RemoveCompose(id)
+        stub.Remove(id)
 
 
 if __name__ == "__main__":

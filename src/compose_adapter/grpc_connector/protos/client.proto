@@ -68,7 +68,6 @@ message ResourceGroupProto {
     repeated PoP pops = 2;
     repeated Network networks = 3;
     repeated VDU vdus = 4;
-    Auth auth = 5;
 }
 
 service OperationHandler {
