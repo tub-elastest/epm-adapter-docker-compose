@@ -34,7 +34,7 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
         if not os.path.exists(compose_path):
             os.mkdir(compose_path)
 
-        f = open(os.path.dirname(__file__) + "/packages/" + package_name + "/docker-compose.yml", "wb")
+        f = open(compose_path + "/docker-compose.yml", "wb")
         f.write(package.extractfile("docker-compose.yml").read())
         f.close()
         package.close()

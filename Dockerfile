@@ -2,7 +2,7 @@ FROM python:2.7
 
 RUN apt-get update && apt-get install -y build-essential autoconf libtool 
 
-RUN pip install docker-compose grpcio grpcio-tools
+RUN pip install docker-compose==1.18.0 grpcio grpcio-tools pyyaml
 
 RUN curl -fsSLO https://get.docker.com/builds/Linux/x86_64/docker-17.04.0-ce.tgz \
   && tar xzvf docker-17.04.0-ce.tgz \
