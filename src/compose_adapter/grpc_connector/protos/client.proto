@@ -4,6 +4,7 @@ option java_multiple_files = true;
 
 message FileMessage {
     bytes file = 1;
+    repeated string options = 2;
 }
 
 message ResourceIdentifier {

@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='client.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\x0c\x63lient.proto\"\x1b\n\x0b\x46ileMessage\x12\x0c\n\x04\x66ile\x18\x01 \x01(\x0c\")\n\x12ResourceIdentifier\x12\x13\n\x0bresource_id\x18\x01 \x01(\t\"E\n\x0eRuntimeMessage\x12\x13\n\x0bresource_id\x18\x01 \x01(\t\x12\x10\n\x08property\x18\x02 \x03(\t\x12\x0c\n\x04\x66ile\x18\x03 \x01(\x0c\"\"\n\x0eStringResponse\x12\x10\n\x08response\x18\x01 \x01(\t\"(\n\x10StartStopMessage\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x07\n\x05\x45mpty\"M\n\x04\x41uth\x12\x10\n\x08\x61uth_url\x18\x01 \x01(\t\x12\x10\n\x08username\x18\x02 \x01(\t\x12\x10\n\x08password\x18\x03 \x01(\t\x12\x0f\n\x07project\x18\x04 \x01(\t\"\xe6\x03\n\x12ResourceGroupProto\x12\x0c\n\x04name\x18\x01 \x01(\t\x12%\n\x04pops\x18\x02 \x03(\x0b\x32\x17.ResourceGroupProto.PoP\x12-\n\x08networks\x18\x03 \x03(\x0b\x32\x1b.ResourceGroupProto.Network\x12%\n\x04vdus\x18\x04 \x03(\x0b\x32\x17.ResourceGroupProto.VDU\x1a.\n\x03PoP\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x19\n\x11interfaceEndpoint\x18\x02 \x01(\t\x1a+\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x1aI\n\x07Network\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07poPName\x18\x02 \x01(\t\x12\x0c\n\x04\x63idr\x18\x03 \x01(\t\x12\x11\n\tnetworkId\x18\x04 \x01(\t\x1a\x9c\x01\n\x03VDU\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x11\n\timageName\x18\x02 \x01(\t\x12\x0f\n\x07netName\x18\x03 \x01(\t\x12\x0f\n\x07poPName\x18\x04 \x01(\t\x12\x11\n\tcomputeId\x18\x05 \x01(\t\x12\n\n\x02ip\x18\x06 \x01(\t\x12\x33\n\x08metadata\x18\x07 \x03(\x0b\x32!.ResourceGroupProto.MetadataEntry2\xe0\x03\n\x10OperationHandler\x12-\n\x06\x43reate\x12\x0c.FileMessage\x1a\x13.ResourceGroupProto\"\x00\x12\'\n\x06Remove\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12.\n\rStopContainer\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12@\n\x16\x43heckIfContainerExists\x12\x13.ResourceIdentifier\x1a\x0f.StringResponse\"\x00\x12\x41\n\x17\x43heckIfContainerRunning\x12\x13.ResourceIdentifier\x1a\x0f.StringResponse\"\x00\x12/\n\x0eStartContainer\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12\x34\n\x0e\x45xecuteCommand\x12\x0f.RuntimeMessage\x1a\x0f.StringResponse\"\x00\x12/\n\x0c\x44ownloadFile\x12\x0f.RuntimeMessage\x1a\x0c.FileMessage\"\x00\x12\'\n\nUploadFile\x12\x0f.RuntimeMessage\x1a\x06.Empty\"\x00\x42\x02P\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x0c\x63lient.proto\",\n\x0b\x46ileMessage\x12\x0c\n\x04\x66ile\x18\x01 \x01(\x0c\x12\x0f\n\x07options\x18\x02 \x03(\t\")\n\x12ResourceIdentifier\x12\x13\n\x0bresource_id\x18\x01 \x01(\t\"E\n\x0eRuntimeMessage\x12\x13\n\x0bresource_id\x18\x01 \x01(\t\x12\x10\n\x08property\x18\x02 \x03(\t\x12\x0c\n\x04\x66ile\x18\x03 \x01(\x0c\"\"\n\x0eStringResponse\x12\x10\n\x08response\x18\x01 \x01(\t\"(\n\x10StartStopMessage\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x07\n\x05\x45mpty\"M\n\x04\x41uth\x12\x10\n\x08\x61uth_url\x18\x01 \x01(\t\x12\x10\n\x08username\x18\x02 \x01(\t\x12\x10\n\x08password\x18\x03 \x01(\t\x12\x0f\n\x07project\x18\x04 \x01(\t\"\xe6\x03\n\x12ResourceGroupProto\x12\x0c\n\x04name\x18\x01 \x01(\t\x12%\n\x04pops\x18\x02 \x03(\x0b\x32\x17.ResourceGroupProto.PoP\x12-\n\x08networks\x18\x03 \x03(\x0b\x32\x1b.ResourceGroupProto.Network\x12%\n\x04vdus\x18\x04 \x03(\x0b\x32\x17.ResourceGroupProto.VDU\x1a.\n\x03PoP\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x19\n\x11interfaceEndpoint\x18\x02 \x01(\t\x1a+\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x1aI\n\x07Network\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07poPName\x18\x02 \x01(\t\x12\x0c\n\x04\x63idr\x18\x03 \x01(\t\x12\x11\n\tnetworkId\x18\x04 \x01(\t\x1a\x9c\x01\n\x03VDU\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x11\n\timageName\x18\x02 \x01(\t\x12\x0f\n\x07netName\x18\x03 \x01(\t\x12\x0f\n\x07poPName\x18\x04 \x01(\t\x12\x11\n\tcomputeId\x18\x05 \x01(\t\x12\n\n\x02ip\x18\x06 \x01(\t\x12\x33\n\x08metadata\x18\x07 \x03(\x0b\x32!.ResourceGroupProto.MetadataEntry2\xe0\x03\n\x10OperationHandler\x12-\n\x06\x43reate\x12\x0c.FileMessage\x1a\x13.ResourceGroupProto\"\x00\x12\'\n\x06Remove\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12.\n\rStopContainer\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12@\n\x16\x43heckIfContainerExists\x12\x13.ResourceIdentifier\x1a\x0f.StringResponse\"\x00\x12\x41\n\x17\x43heckIfContainerRunning\x12\x13.ResourceIdentifier\x1a\x0f.StringResponse\"\x00\x12/\n\x0eStartContainer\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12\x34\n\x0e\x45xecuteCommand\x12\x0f.RuntimeMessage\x1a\x0f.StringResponse\"\x00\x12/\n\x0c\x44ownloadFile\x12\x0f.RuntimeMessage\x1a\x0c.FileMessage\"\x00\x12\'\n\nUploadFile\x12\x0f.RuntimeMessage\x1a\x06.Empty\"\x00\x42\x02P\x01\x62\x06proto3')
 )
 
 
@@ -39,6 +39,13 @@ _FILEMESSAGE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='options', full_name='FileMessage.options', index=1,
+      number=2, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -52,7 +59,7 @@ _FILEMESSAGE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=16,
-  serialized_end=43,
+  serialized_end=60,
 )
 
 
@@ -82,8 +89,8 @@ _RESOURCEIDENTIFIER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=45,
-  serialized_end=86,
+  serialized_start=62,
+  serialized_end=103,
 )
 
 
@@ -127,8 +134,8 @@ _RUNTIMEMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=88,
-  serialized_end=157,
+  serialized_start=105,
+  serialized_end=174,
 )
 
 
@@ -158,8 +165,8 @@ _STRINGRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=159,
-  serialized_end=193,
+  serialized_start=176,
+  serialized_end=210,
 )
 
 
@@ -189,8 +196,8 @@ _STARTSTOPMESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=195,
-  serialized_end=235,
+  serialized_start=212,
+  serialized_end=252,
 )
 
 
@@ -213,8 +220,8 @@ _EMPTY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=237,
-  serialized_end=244,
+  serialized_start=254,
+  serialized_end=261,
 )
 
 
@@ -265,8 +272,8 @@ _AUTH = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=246,
-  serialized_end=323,
+  serialized_start=263,
+  serialized_end=340,
 )
 
 
@@ -303,8 +310,8 @@ _RESOURCEGROUPPROTO_POP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=487,
-  serialized_end=533,
+  serialized_start=504,
+  serialized_end=550,
 )
 
 _RESOURCEGROUPPROTO_METADATAENTRY = _descriptor.Descriptor(
@@ -340,8 +347,8 @@ _RESOURCEGROUPPROTO_METADATAENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=535,
-  serialized_end=578,
+  serialized_start=552,
+  serialized_end=595,
 )
 
 _RESOURCEGROUPPROTO_NETWORK = _descriptor.Descriptor(
@@ -391,8 +398,8 @@ _RESOURCEGROUPPROTO_NETWORK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=580,
-  serialized_end=653,
+  serialized_start=597,
+  serialized_end=670,
 )
 
 _RESOURCEGROUPPROTO_VDU = _descriptor.Descriptor(
@@ -463,8 +470,8 @@ _RESOURCEGROUPPROTO_VDU = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=656,
-  serialized_end=812,
+  serialized_start=673,
+  serialized_end=829,
 )
 
 _RESOURCEGROUPPROTO = _descriptor.Descriptor(
@@ -514,8 +521,8 @@ _RESOURCEGROUPPROTO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=326,
-  serialized_end=812,
+  serialized_start=343,
+  serialized_end=829,
 )
 
 _RESOURCEGROUPPROTO_POP.containing_type = _RESOURCEGROUPPROTO
@@ -634,8 +641,8 @@ _OPERATIONHANDLER = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=815,
-  serialized_end=1295,
+  serialized_start=832,
+  serialized_end=1312,
   methods=[
   _descriptor.MethodDescriptor(
     name='Create',

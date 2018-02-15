@@ -7,9 +7,9 @@ import yaml
 
 
 # Up the services and return the container ids
-def up(project_path, default_logging):
+def up(project_path, default_logging, logging_address):
     if default_logging:
-        set_logging_driver(project_path)
+        set_logging_driver(project_path, logging_address)
 
     up_options = {"-d": True,
                   "--no-color": False,
@@ -60,14 +60,16 @@ def rm(project_path):
     cmd.down(rm_options)
 
 
-def set_logging_driver(project_path):
+def set_logging_driver(project_path, logging_address):
+    print("Setting the logging driver!")
+    print(logging_address)
     f = open(project_path + "/docker-compose.yml", "r")
     compose = yaml.load(f.read())
     f.close()
     for service in compose["services"]:
         if not compose["services"][service].has_key("logging"):
             f = open(project_path + "/docker-compose.yml", "w")
-            default_driver = {'driver': 'syslog', 'options': {'syslog-address': 'tcp://localhost:5000'}}
+            default_driver = {'driver': 'syslog', 'options': {'syslog-address': logging_address}}
             compose["services"][service]['logging'] = default_driver
             yaml.dump(compose, f, default_flow_style=False)
             f.close()
