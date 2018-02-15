@@ -41,8 +41,12 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
         temp.close()
 
         options = request.options
-        enabled = options[0] == "True"
-        address = str(options[1])
+        if len(options) >= 2:
+            enabled = options[0] == "True"
+            address = str(options[1])
+        else:
+            enabled=False
+            address=""
 
         container_ids = compose_handler.up(project_path=compose_path, default_logging=enabled, logging_address=address)
         rg = docker_handler.convert_to_resource_group(container_ids, resource_group_name=package_name)
