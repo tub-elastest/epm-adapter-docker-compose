@@ -7,8 +7,10 @@ import yaml
 
 
 # Up the services and return the container ids
-def up(project_path):
-    set_logging_driver(project_path)
+def up(project_path, default_logging):
+    if default_logging:
+        set_logging_driver(project_path)
+
     up_options = {"-d": True,
                   "--no-color": False,
                   "--no-deps": False,

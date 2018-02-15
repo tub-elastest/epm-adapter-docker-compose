@@ -40,7 +40,7 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
         package.close()
         temp.close()
 
-        container_ids = compose_handler.up(project_path=compose_path)
+        container_ids = compose_handler.up(project_path=compose_path, default_logging=False)
         rg = docker_handler.convert_to_resource_group(container_ids, resource_group_name=package_name)
         return rg
 
