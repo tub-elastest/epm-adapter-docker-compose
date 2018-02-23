@@ -41,7 +41,7 @@ def convert_to_resource_group(container_ids, resource_group_name):
         ip = container.attrs["NetworkSettings"]["Networks"][key]["IPAddress"]
 
         vdu = ResourceGroupProto.VDU(name=name, imageName=imageName, netName=netName, computeId=id, ip=ip,
-                                              metadata=metadata_entries)
+                                     metadata=metadata_entries)
         vdus.append(vdu)
 
     network_names = set(network_names)
@@ -60,6 +60,11 @@ def get_inspect_as_metadata(data):
     for x in data:
         recursive_parsing(data, [x], out)
     return out
+
+
+def login_to_registry(registry_credentials):
+    client = docker.from_env()
+    client.login(username=registry_credentials[1], password=registry_credentials[2], registry=registry_credentials[0])
 
 
 def recursive_parsing(data, names, out):

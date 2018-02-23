@@ -8,6 +8,7 @@ import yaml
 
 # Up the services and return the container ids
 def up(project_path, default_logging, logging_address):
+
     if default_logging:
         set_logging_driver(project_path, logging_address)
 

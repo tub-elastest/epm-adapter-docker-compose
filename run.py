@@ -30,6 +30,18 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
         metadata = yaml.load(package.extractfile("metadata.yaml").read())
         package_name = metadata.get("name")
 
+        registry_credentials = []
+        if "docker_registry" in metadata:
+            if "docker_username" in metadata:
+                password = ""
+                if "docker_password" in metadata:
+                    password = metadata.get("docker_password")
+                registry_credentials.append(metadata.get("docker_registry"))
+                registry_credentials.append(metadata.get("docker_username"))
+                registry_credentials.append(metadata.get("docker_password"))
+            else:
+                print("If you specify a custom docker registry, you need to specify the login credentials.")
+
         compose_path = os.path.dirname(__file__) + "/packages/" + package_name
         if not os.path.exists(compose_path):
             os.mkdir(compose_path)
@@ -47,6 +59,9 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
         else:
             enabled=False
             address=""
+
+        if len(registry_credentials) == 3:
+            docker_handler.login_to_registry(registry_credentials)
 
         container_ids = compose_handler.up(project_path=compose_path, default_logging=enabled, logging_address=address)
         rg = docker_handler.convert_to_resource_group(container_ids, resource_group_name=package_name)
