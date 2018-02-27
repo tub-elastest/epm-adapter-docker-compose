@@ -16,6 +16,7 @@ The docker-compose adapter compliant to the EPM is used to launch docker-compose
 
 # Supported tags and respective `Dockerfile` links
 -	[`0.5.0` (*1.0/Dockerfile*)](https://github.com/mpauls/epm-adapter-docker-compose/blob/0.5.0/Dockerfile)
+-	[`0.8.0` (*1.0/Dockerfile*)](https://github.com/mpauls/epm-adapter-docker-compose/blob/0.8.0/Dockerfile)
 
 # Quick reference
 

@@ -9,7 +9,7 @@ node('docker'){
 
             stage "Build image - Package"
                 echo ("Building docker image...")
-                def myimage = docker.build("elastest/epm-adapter-docker-compose:latest")
+                def myimage = docker.build("elastest/epm-adapter-docker-compose:0.8.0")
 
             stage "Run image"
                 echo "Run the image..."
