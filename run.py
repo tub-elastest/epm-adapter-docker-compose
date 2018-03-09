@@ -67,6 +67,9 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
         rg = docker_handler.convert_to_resource_group(container_ids, resource_group_name=package_name)
         return rg
 
+    def CheckStatus(self, request, context):
+        return client_pb2.Empty()
+
     def CheckIfContainerExists(self, request, context):
 
         compose_id = request.resource_id

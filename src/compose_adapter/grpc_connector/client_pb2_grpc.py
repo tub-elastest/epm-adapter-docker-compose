@@ -59,6 +59,11 @@ class OperationHandlerStub(object):
         request_serializer=client__pb2.RuntimeMessage.SerializeToString,
         response_deserializer=client__pb2.Empty.FromString,
         )
+    self.CheckStatus = channel.unary_unary(
+        '/OperationHandler/CheckStatus',
+        request_serializer=client__pb2.Empty.SerializeToString,
+        response_deserializer=client__pb2.Empty.FromString,
+        )
 
 
 class OperationHandlerServicer(object):
@@ -128,6 +133,13 @@ class OperationHandlerServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def CheckStatus(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_OperationHandlerServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -174,6 +186,11 @@ def add_OperationHandlerServicer_to_server(servicer, server):
       'UploadFile': grpc.unary_unary_rpc_method_handler(
           servicer.UploadFile,
           request_deserializer=client__pb2.RuntimeMessage.FromString,
+          response_serializer=client__pb2.Empty.SerializeToString,
+      ),
+      'CheckStatus': grpc.unary_unary_rpc_method_handler(
+          servicer.CheckStatus,
+          request_deserializer=client__pb2.Empty.FromString,
           response_serializer=client__pb2.Empty.SerializeToString,
       ),
   }

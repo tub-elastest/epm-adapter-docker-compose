@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='client.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\x0c\x63lient.proto\",\n\x0b\x46ileMessage\x12\x0c\n\x04\x66ile\x18\x01 \x01(\x0c\x12\x0f\n\x07options\x18\x02 \x03(\t\")\n\x12ResourceIdentifier\x12\x13\n\x0bresource_id\x18\x01 \x01(\t\"E\n\x0eRuntimeMessage\x12\x13\n\x0bresource_id\x18\x01 \x01(\t\x12\x10\n\x08property\x18\x02 \x03(\t\x12\x0c\n\x04\x66ile\x18\x03 \x01(\x0c\"\"\n\x0eStringResponse\x12\x10\n\x08response\x18\x01 \x01(\t\"(\n\x10StartStopMessage\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x07\n\x05\x45mpty\"M\n\x04\x41uth\x12\x10\n\x08\x61uth_url\x18\x01 \x01(\t\x12\x10\n\x08username\x18\x02 \x01(\t\x12\x10\n\x08password\x18\x03 \x01(\t\x12\x0f\n\x07project\x18\x04 \x01(\t\"\xe6\x03\n\x12ResourceGroupProto\x12\x0c\n\x04name\x18\x01 \x01(\t\x12%\n\x04pops\x18\x02 \x03(\x0b\x32\x17.ResourceGroupProto.PoP\x12-\n\x08networks\x18\x03 \x03(\x0b\x32\x1b.ResourceGroupProto.Network\x12%\n\x04vdus\x18\x04 \x03(\x0b\x32\x17.ResourceGroupProto.VDU\x1a.\n\x03PoP\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x19\n\x11interfaceEndpoint\x18\x02 \x01(\t\x1a+\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x1aI\n\x07Network\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07poPName\x18\x02 \x01(\t\x12\x0c\n\x04\x63idr\x18\x03 \x01(\t\x12\x11\n\tnetworkId\x18\x04 \x01(\t\x1a\x9c\x01\n\x03VDU\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x11\n\timageName\x18\x02 \x01(\t\x12\x0f\n\x07netName\x18\x03 \x01(\t\x12\x0f\n\x07poPName\x18\x04 \x01(\t\x12\x11\n\tcomputeId\x18\x05 \x01(\t\x12\n\n\x02ip\x18\x06 \x01(\t\x12\x33\n\x08metadata\x18\x07 \x03(\x0b\x32!.ResourceGroupProto.MetadataEntry2\xe0\x03\n\x10OperationHandler\x12-\n\x06\x43reate\x12\x0c.FileMessage\x1a\x13.ResourceGroupProto\"\x00\x12\'\n\x06Remove\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12.\n\rStopContainer\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12@\n\x16\x43heckIfContainerExists\x12\x13.ResourceIdentifier\x1a\x0f.StringResponse\"\x00\x12\x41\n\x17\x43heckIfContainerRunning\x12\x13.ResourceIdentifier\x1a\x0f.StringResponse\"\x00\x12/\n\x0eStartContainer\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12\x34\n\x0e\x45xecuteCommand\x12\x0f.RuntimeMessage\x1a\x0f.StringResponse\"\x00\x12/\n\x0c\x44ownloadFile\x12\x0f.RuntimeMessage\x1a\x0c.FileMessage\"\x00\x12\'\n\nUploadFile\x12\x0f.RuntimeMessage\x1a\x06.Empty\"\x00\x42\x02P\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x0c\x63lient.proto\",\n\x0b\x46ileMessage\x12\x0c\n\x04\x66ile\x18\x01 \x01(\x0c\x12\x0f\n\x07options\x18\x02 \x03(\t\")\n\x12ResourceIdentifier\x12\x13\n\x0bresource_id\x18\x01 \x01(\t\"E\n\x0eRuntimeMessage\x12\x13\n\x0bresource_id\x18\x01 \x01(\t\x12\x10\n\x08property\x18\x02 \x03(\t\x12\x0c\n\x04\x66ile\x18\x03 \x01(\x0c\"\"\n\x0eStringResponse\x12\x10\n\x08response\x18\x01 \x01(\t\"(\n\x10StartStopMessage\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x07\n\x05\x45mpty\"\x18\n\x06Status\x12\x0e\n\x06status\x18\x01 \x01(\t\"M\n\x04\x41uth\x12\x10\n\x08\x61uth_url\x18\x01 \x01(\t\x12\x10\n\x08username\x18\x02 \x01(\t\x12\x10\n\x08password\x18\x03 \x01(\t\x12\x0f\n\x07project\x18\x04 \x01(\t\"\xe6\x03\n\x12ResourceGroupProto\x12\x0c\n\x04name\x18\x01 \x01(\t\x12%\n\x04pops\x18\x02 \x03(\x0b\x32\x17.ResourceGroupProto.PoP\x12-\n\x08networks\x18\x03 \x03(\x0b\x32\x1b.ResourceGroupProto.Network\x12%\n\x04vdus\x18\x04 \x03(\x0b\x32\x17.ResourceGroupProto.VDU\x1a.\n\x03PoP\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x19\n\x11interfaceEndpoint\x18\x02 \x01(\t\x1a+\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x1aI\n\x07Network\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07poPName\x18\x02 \x01(\t\x12\x0c\n\x04\x63idr\x18\x03 \x01(\t\x12\x11\n\tnetworkId\x18\x04 \x01(\t\x1a\x9c\x01\n\x03VDU\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x11\n\timageName\x18\x02 \x01(\t\x12\x0f\n\x07netName\x18\x03 \x01(\t\x12\x0f\n\x07poPName\x18\x04 \x01(\t\x12\x11\n\tcomputeId\x18\x05 \x01(\t\x12\n\n\x02ip\x18\x06 \x01(\t\x12\x33\n\x08metadata\x18\x07 \x03(\x0b\x32!.ResourceGroupProto.MetadataEntry2\x81\x04\n\x10OperationHandler\x12-\n\x06\x43reate\x12\x0c.FileMessage\x1a\x13.ResourceGroupProto\"\x00\x12\'\n\x06Remove\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12.\n\rStopContainer\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12@\n\x16\x43heckIfContainerExists\x12\x13.ResourceIdentifier\x1a\x0f.StringResponse\"\x00\x12\x41\n\x17\x43heckIfContainerRunning\x12\x13.ResourceIdentifier\x1a\x0f.StringResponse\"\x00\x12/\n\x0eStartContainer\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12\x34\n\x0e\x45xecuteCommand\x12\x0f.RuntimeMessage\x1a\x0f.StringResponse\"\x00\x12/\n\x0c\x44ownloadFile\x12\x0f.RuntimeMessage\x1a\x0c.FileMessage\"\x00\x12\'\n\nUploadFile\x12\x0f.RuntimeMessage\x1a\x06.Empty\"\x00\x12\x1f\n\x0b\x43heckStatus\x12\x06.Empty\x1a\x06.Empty\"\x00\x42\x02P\x01\x62\x06proto3')
 )
 
 
@@ -225,6 +225,37 @@ _EMPTY = _descriptor.Descriptor(
 )
 
 
+_STATUS = _descriptor.Descriptor(
+  name='Status',
+  full_name='Status',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='status', full_name='Status.status', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=263,
+  serialized_end=287,
+)
+
+
 _AUTH = _descriptor.Descriptor(
   name='Auth',
   full_name='Auth',
@@ -272,8 +303,8 @@ _AUTH = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=263,
-  serialized_end=340,
+  serialized_start=289,
+  serialized_end=366,
 )
 
 
@@ -310,8 +341,8 @@ _RESOURCEGROUPPROTO_POP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=504,
-  serialized_end=550,
+  serialized_start=530,
+  serialized_end=576,
 )
 
 _RESOURCEGROUPPROTO_METADATAENTRY = _descriptor.Descriptor(
@@ -347,8 +378,8 @@ _RESOURCEGROUPPROTO_METADATAENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=552,
-  serialized_end=595,
+  serialized_start=578,
+  serialized_end=621,
 )
 
 _RESOURCEGROUPPROTO_NETWORK = _descriptor.Descriptor(
@@ -398,8 +429,8 @@ _RESOURCEGROUPPROTO_NETWORK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=597,
-  serialized_end=670,
+  serialized_start=623,
+  serialized_end=696,
 )
 
 _RESOURCEGROUPPROTO_VDU = _descriptor.Descriptor(
@@ -470,8 +501,8 @@ _RESOURCEGROUPPROTO_VDU = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=673,
-  serialized_end=829,
+  serialized_start=699,
+  serialized_end=855,
 )
 
 _RESOURCEGROUPPROTO = _descriptor.Descriptor(
@@ -521,8 +552,8 @@ _RESOURCEGROUPPROTO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=343,
-  serialized_end=829,
+  serialized_start=369,
+  serialized_end=855,
 )
 
 _RESOURCEGROUPPROTO_POP.containing_type = _RESOURCEGROUPPROTO
@@ -539,6 +570,7 @@ DESCRIPTOR.message_types_by_name['RuntimeMessage'] = _RUNTIMEMESSAGE
 DESCRIPTOR.message_types_by_name['StringResponse'] = _STRINGRESPONSE
 DESCRIPTOR.message_types_by_name['StartStopMessage'] = _STARTSTOPMESSAGE
 DESCRIPTOR.message_types_by_name['Empty'] = _EMPTY
+DESCRIPTOR.message_types_by_name['Status'] = _STATUS
 DESCRIPTOR.message_types_by_name['Auth'] = _AUTH
 DESCRIPTOR.message_types_by_name['ResourceGroupProto'] = _RESOURCEGROUPPROTO
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -584,6 +616,13 @@ Empty = _reflection.GeneratedProtocolMessageType('Empty', (_message.Message,), d
   # @@protoc_insertion_point(class_scope:Empty)
   ))
 _sym_db.RegisterMessage(Empty)
+
+Status = _reflection.GeneratedProtocolMessageType('Status', (_message.Message,), dict(
+  DESCRIPTOR = _STATUS,
+  __module__ = 'client_pb2'
+  # @@protoc_insertion_point(class_scope:Status)
+  ))
+_sym_db.RegisterMessage(Status)
 
 Auth = _reflection.GeneratedProtocolMessageType('Auth', (_message.Message,), dict(
   DESCRIPTOR = _AUTH,
@@ -641,8 +680,8 @@ _OPERATIONHANDLER = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=832,
-  serialized_end=1312,
+  serialized_start=858,
+  serialized_end=1371,
   methods=[
   _descriptor.MethodDescriptor(
     name='Create',
@@ -725,6 +764,15 @@ _OPERATIONHANDLER = _descriptor.ServiceDescriptor(
     output_type=_EMPTY,
     options=None,
   ),
+  _descriptor.MethodDescriptor(
+    name='CheckStatus',
+    full_name='OperationHandler.CheckStatus',
+    index=9,
+    containing_service=None,
+    input_type=_EMPTY,
+    output_type=_EMPTY,
+    options=None,
+  ),
 ])
 _sym_db.RegisterServiceDescriptor(_OPERATIONHANDLER)
 
@@ -793,6 +841,11 @@ try:
       self.UploadFile = channel.unary_unary(
           '/OperationHandler/UploadFile',
           request_serializer=RuntimeMessage.SerializeToString,
+          response_deserializer=Empty.FromString,
+          )
+      self.CheckStatus = channel.unary_unary(
+          '/OperationHandler/CheckStatus',
+          request_serializer=Empty.SerializeToString,
           response_deserializer=Empty.FromString,
           )
 
@@ -864,6 +917,13 @@ try:
       context.set_details('Method not implemented!')
       raise NotImplementedError('Method not implemented!')
 
+    def CheckStatus(self, request, context):
+      # missing associated documentation comment in .proto file
+      pass
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
 
   def add_OperationHandlerServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -910,6 +970,11 @@ try:
         'UploadFile': grpc.unary_unary_rpc_method_handler(
             servicer.UploadFile,
             request_deserializer=RuntimeMessage.FromString,
+            response_serializer=Empty.SerializeToString,
+        ),
+        'CheckStatus': grpc.unary_unary_rpc_method_handler(
+            servicer.CheckStatus,
+            request_deserializer=Empty.FromString,
             response_serializer=Empty.SerializeToString,
         ),
     }
@@ -959,6 +1024,10 @@ try:
       pass
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def UploadFile(self, request, context):
+      # missing associated documentation comment in .proto file
+      pass
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def CheckStatus(self, request, context):
       # missing associated documentation comment in .proto file
       pass
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
@@ -1017,6 +1086,11 @@ try:
       pass
       raise NotImplementedError()
     UploadFile.future = None
+    def CheckStatus(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      # missing associated documentation comment in .proto file
+      pass
+      raise NotImplementedError()
+    CheckStatus.future = None
 
 
   def beta_create_OperationHandler_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
@@ -1028,6 +1102,7 @@ try:
     request_deserializers = {
       ('OperationHandler', 'CheckIfContainerExists'): ResourceIdentifier.FromString,
       ('OperationHandler', 'CheckIfContainerRunning'): ResourceIdentifier.FromString,
+      ('OperationHandler', 'CheckStatus'): Empty.FromString,
       ('OperationHandler', 'Create'): FileMessage.FromString,
       ('OperationHandler', 'DownloadFile'): RuntimeMessage.FromString,
       ('OperationHandler', 'ExecuteCommand'): RuntimeMessage.FromString,
@@ -1039,6 +1114,7 @@ try:
     response_serializers = {
       ('OperationHandler', 'CheckIfContainerExists'): StringResponse.SerializeToString,
       ('OperationHandler', 'CheckIfContainerRunning'): StringResponse.SerializeToString,
+      ('OperationHandler', 'CheckStatus'): Empty.SerializeToString,
       ('OperationHandler', 'Create'): ResourceGroupProto.SerializeToString,
       ('OperationHandler', 'DownloadFile'): FileMessage.SerializeToString,
       ('OperationHandler', 'ExecuteCommand'): StringResponse.SerializeToString,
@@ -1050,6 +1126,7 @@ try:
     method_implementations = {
       ('OperationHandler', 'CheckIfContainerExists'): face_utilities.unary_unary_inline(servicer.CheckIfContainerExists),
       ('OperationHandler', 'CheckIfContainerRunning'): face_utilities.unary_unary_inline(servicer.CheckIfContainerRunning),
+      ('OperationHandler', 'CheckStatus'): face_utilities.unary_unary_inline(servicer.CheckStatus),
       ('OperationHandler', 'Create'): face_utilities.unary_unary_inline(servicer.Create),
       ('OperationHandler', 'DownloadFile'): face_utilities.unary_unary_inline(servicer.DownloadFile),
       ('OperationHandler', 'ExecuteCommand'): face_utilities.unary_unary_inline(servicer.ExecuteCommand),
@@ -1071,6 +1148,7 @@ try:
     request_serializers = {
       ('OperationHandler', 'CheckIfContainerExists'): ResourceIdentifier.SerializeToString,
       ('OperationHandler', 'CheckIfContainerRunning'): ResourceIdentifier.SerializeToString,
+      ('OperationHandler', 'CheckStatus'): Empty.SerializeToString,
       ('OperationHandler', 'Create'): FileMessage.SerializeToString,
       ('OperationHandler', 'DownloadFile'): RuntimeMessage.SerializeToString,
       ('OperationHandler', 'ExecuteCommand'): RuntimeMessage.SerializeToString,
@@ -1082,6 +1160,7 @@ try:
     response_deserializers = {
       ('OperationHandler', 'CheckIfContainerExists'): StringResponse.FromString,
       ('OperationHandler', 'CheckIfContainerRunning'): StringResponse.FromString,
+      ('OperationHandler', 'CheckStatus'): Empty.FromString,
       ('OperationHandler', 'Create'): ResourceGroupProto.FromString,
       ('OperationHandler', 'DownloadFile'): FileMessage.FromString,
       ('OperationHandler', 'ExecuteCommand'): StringResponse.FromString,
@@ -1093,6 +1172,7 @@ try:
     cardinalities = {
       'CheckIfContainerExists': cardinality.Cardinality.UNARY_UNARY,
       'CheckIfContainerRunning': cardinality.Cardinality.UNARY_UNARY,
+      'CheckStatus': cardinality.Cardinality.UNARY_UNARY,
       'Create': cardinality.Cardinality.UNARY_UNARY,
       'DownloadFile': cardinality.Cardinality.UNARY_UNARY,
       'ExecuteCommand': cardinality.Cardinality.UNARY_UNARY,
