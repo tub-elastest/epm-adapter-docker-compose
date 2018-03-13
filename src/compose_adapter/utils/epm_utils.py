@@ -8,7 +8,7 @@ max_timeout = 10
 def register_pop(ip, compose_ip):
     i = 0
     while i < 10:
-        pop_compose = {"name": "compose",
+        pop_compose = {"name": "compose-"+compose_ip,
                        "interfaceEndpoint": compose_ip,
                        "interfaceInfo":
                            [{"key": "type",
