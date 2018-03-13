@@ -11,7 +11,8 @@ def test_runtime_full():
         stub = client_pb2_grpc.OperationHandlerStub(channel)
 
         empty = client_pb2.Empty()
-        stub.CheckStatus(empty)
+        status = stub.CheckStatus(empty)
+        print(status)
 
         f = open("tests/compose-package.tar", "rb")
         dc = client_pb2.FileMessage(file=f.read())

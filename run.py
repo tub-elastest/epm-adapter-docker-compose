@@ -68,7 +68,13 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
         return rg
 
     def CheckStatus(self, request, context):
-        return client_pb2.Empty()
+        """
+        Status:
+        0 - CONFIGURING
+        1 - ACTIVE
+        2 - INACTIVE
+        """
+        return client_pb2.Status(status=1)
 
     def CheckIfContainerExists(self, request, context):
 

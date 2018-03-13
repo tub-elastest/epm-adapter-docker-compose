@@ -19,10 +19,36 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='client.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\x0c\x63lient.proto\",\n\x0b\x46ileMessage\x12\x0c\n\x04\x66ile\x18\x01 \x01(\x0c\x12\x0f\n\x07options\x18\x02 \x03(\t\")\n\x12ResourceIdentifier\x12\x13\n\x0bresource_id\x18\x01 \x01(\t\"E\n\x0eRuntimeMessage\x12\x13\n\x0bresource_id\x18\x01 \x01(\t\x12\x10\n\x08property\x18\x02 \x03(\t\x12\x0c\n\x04\x66ile\x18\x03 \x01(\x0c\"\"\n\x0eStringResponse\x12\x10\n\x08response\x18\x01 \x01(\t\"(\n\x10StartStopMessage\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x07\n\x05\x45mpty\"\x18\n\x06Status\x12\x0e\n\x06status\x18\x01 \x01(\t\"M\n\x04\x41uth\x12\x10\n\x08\x61uth_url\x18\x01 \x01(\t\x12\x10\n\x08username\x18\x02 \x01(\t\x12\x10\n\x08password\x18\x03 \x01(\t\x12\x0f\n\x07project\x18\x04 \x01(\t\"\xe6\x03\n\x12ResourceGroupProto\x12\x0c\n\x04name\x18\x01 \x01(\t\x12%\n\x04pops\x18\x02 \x03(\x0b\x32\x17.ResourceGroupProto.PoP\x12-\n\x08networks\x18\x03 \x03(\x0b\x32\x1b.ResourceGroupProto.Network\x12%\n\x04vdus\x18\x04 \x03(\x0b\x32\x17.ResourceGroupProto.VDU\x1a.\n\x03PoP\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x19\n\x11interfaceEndpoint\x18\x02 \x01(\t\x1a+\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x1aI\n\x07Network\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07poPName\x18\x02 \x01(\t\x12\x0c\n\x04\x63idr\x18\x03 \x01(\t\x12\x11\n\tnetworkId\x18\x04 \x01(\t\x1a\x9c\x01\n\x03VDU\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x11\n\timageName\x18\x02 \x01(\t\x12\x0f\n\x07netName\x18\x03 \x01(\t\x12\x0f\n\x07poPName\x18\x04 \x01(\t\x12\x11\n\tcomputeId\x18\x05 \x01(\t\x12\n\n\x02ip\x18\x06 \x01(\t\x12\x33\n\x08metadata\x18\x07 \x03(\x0b\x32!.ResourceGroupProto.MetadataEntry2\x81\x04\n\x10OperationHandler\x12-\n\x06\x43reate\x12\x0c.FileMessage\x1a\x13.ResourceGroupProto\"\x00\x12\'\n\x06Remove\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12.\n\rStopContainer\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12@\n\x16\x43heckIfContainerExists\x12\x13.ResourceIdentifier\x1a\x0f.StringResponse\"\x00\x12\x41\n\x17\x43heckIfContainerRunning\x12\x13.ResourceIdentifier\x1a\x0f.StringResponse\"\x00\x12/\n\x0eStartContainer\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12\x34\n\x0e\x45xecuteCommand\x12\x0f.RuntimeMessage\x1a\x0f.StringResponse\"\x00\x12/\n\x0c\x44ownloadFile\x12\x0f.RuntimeMessage\x1a\x0c.FileMessage\"\x00\x12\'\n\nUploadFile\x12\x0f.RuntimeMessage\x1a\x06.Empty\"\x00\x12\x1f\n\x0b\x43heckStatus\x12\x06.Empty\x1a\x06.Empty\"\x00\x42\x02P\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x0c\x63lient.proto\",\n\x0b\x46ileMessage\x12\x0c\n\x04\x66ile\x18\x01 \x01(\x0c\x12\x0f\n\x07options\x18\x02 \x03(\t\")\n\x12ResourceIdentifier\x12\x13\n\x0bresource_id\x18\x01 \x01(\t\"E\n\x0eRuntimeMessage\x12\x13\n\x0bresource_id\x18\x01 \x01(\t\x12\x10\n\x08property\x18\x02 \x03(\t\x12\x0c\n\x04\x66ile\x18\x03 \x01(\x0c\"\"\n\x0eStringResponse\x12\x10\n\x08response\x18\x01 \x01(\t\"(\n\x10StartStopMessage\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\"\x07\n\x05\x45mpty\"i\n\x06Status\x12%\n\x06status\x18\x01 \x01(\x0e\x32\x15.Status.ServingStatus\"8\n\rServingStatus\x12\r\n\tCONFIGURE\x10\x00\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0c\n\x08INACTIVE\x10\x02\"M\n\x04\x41uth\x12\x10\n\x08\x61uth_url\x18\x01 \x01(\t\x12\x10\n\x08username\x18\x02 \x01(\t\x12\x10\n\x08password\x18\x03 \x01(\t\x12\x0f\n\x07project\x18\x04 \x01(\t\"\xe6\x03\n\x12ResourceGroupProto\x12\x0c\n\x04name\x18\x01 \x01(\t\x12%\n\x04pops\x18\x02 \x03(\x0b\x32\x17.ResourceGroupProto.PoP\x12-\n\x08networks\x18\x03 \x03(\x0b\x32\x1b.ResourceGroupProto.Network\x12%\n\x04vdus\x18\x04 \x03(\x0b\x32\x17.ResourceGroupProto.VDU\x1a.\n\x03PoP\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x19\n\x11interfaceEndpoint\x18\x02 \x01(\t\x1a+\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x1aI\n\x07Network\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07poPName\x18\x02 \x01(\t\x12\x0c\n\x04\x63idr\x18\x03 \x01(\t\x12\x11\n\tnetworkId\x18\x04 \x01(\t\x1a\x9c\x01\n\x03VDU\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x11\n\timageName\x18\x02 \x01(\t\x12\x0f\n\x07netName\x18\x03 \x01(\t\x12\x0f\n\x07poPName\x18\x04 \x01(\t\x12\x11\n\tcomputeId\x18\x05 \x01(\t\x12\n\n\x02ip\x18\x06 \x01(\t\x12\x33\n\x08metadata\x18\x07 \x03(\x0b\x32!.ResourceGroupProto.MetadataEntry2\x82\x04\n\x10OperationHandler\x12-\n\x06\x43reate\x12\x0c.FileMessage\x1a\x13.ResourceGroupProto\"\x00\x12\'\n\x06Remove\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12.\n\rStopContainer\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12@\n\x16\x43heckIfContainerExists\x12\x13.ResourceIdentifier\x1a\x0f.StringResponse\"\x00\x12\x41\n\x17\x43heckIfContainerRunning\x12\x13.ResourceIdentifier\x1a\x0f.StringResponse\"\x00\x12/\n\x0eStartContainer\x12\x13.ResourceIdentifier\x1a\x06.Empty\"\x00\x12\x34\n\x0e\x45xecuteCommand\x12\x0f.RuntimeMessage\x1a\x0f.StringResponse\"\x00\x12/\n\x0c\x44ownloadFile\x12\x0f.RuntimeMessage\x1a\x0c.FileMessage\"\x00\x12\'\n\nUploadFile\x12\x0f.RuntimeMessage\x1a\x06.Empty\"\x00\x12 \n\x0b\x43heckStatus\x12\x06.Empty\x1a\x07.Status\"\x00\x42\x02P\x01\x62\x06proto3')
 )
 
 
+
+_STATUS_SERVINGSTATUS = _descriptor.EnumDescriptor(
+  name='ServingStatus',
+  full_name='Status.ServingStatus',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='CONFIGURE', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ACTIVE', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='INACTIVE', index=2, number=2,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=312,
+  serialized_end=368,
+)
+_sym_db.RegisterEnumDescriptor(_STATUS_SERVINGSTATUS)
 
 
 _FILEMESSAGE = _descriptor.Descriptor(
@@ -234,8 +260,8 @@ _STATUS = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='status', full_name='Status.status', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -244,6 +270,7 @@ _STATUS = _descriptor.Descriptor(
   ],
   nested_types=[],
   enum_types=[
+    _STATUS_SERVINGSTATUS,
   ],
   options=None,
   is_extendable=False,
@@ -252,7 +279,7 @@ _STATUS = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=263,
-  serialized_end=287,
+  serialized_end=368,
 )
 
 
@@ -303,8 +330,8 @@ _AUTH = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=289,
-  serialized_end=366,
+  serialized_start=370,
+  serialized_end=447,
 )
 
 
@@ -341,8 +368,8 @@ _RESOURCEGROUPPROTO_POP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=530,
-  serialized_end=576,
+  serialized_start=611,
+  serialized_end=657,
 )
 
 _RESOURCEGROUPPROTO_METADATAENTRY = _descriptor.Descriptor(
@@ -378,8 +405,8 @@ _RESOURCEGROUPPROTO_METADATAENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=578,
-  serialized_end=621,
+  serialized_start=659,
+  serialized_end=702,
 )
 
 _RESOURCEGROUPPROTO_NETWORK = _descriptor.Descriptor(
@@ -429,8 +456,8 @@ _RESOURCEGROUPPROTO_NETWORK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=623,
-  serialized_end=696,
+  serialized_start=704,
+  serialized_end=777,
 )
 
 _RESOURCEGROUPPROTO_VDU = _descriptor.Descriptor(
@@ -501,8 +528,8 @@ _RESOURCEGROUPPROTO_VDU = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=699,
-  serialized_end=855,
+  serialized_start=780,
+  serialized_end=936,
 )
 
 _RESOURCEGROUPPROTO = _descriptor.Descriptor(
@@ -552,10 +579,12 @@ _RESOURCEGROUPPROTO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=369,
-  serialized_end=855,
+  serialized_start=450,
+  serialized_end=936,
 )
 
+_STATUS.fields_by_name['status'].enum_type = _STATUS_SERVINGSTATUS
+_STATUS_SERVINGSTATUS.containing_type = _STATUS
 _RESOURCEGROUPPROTO_POP.containing_type = _RESOURCEGROUPPROTO
 _RESOURCEGROUPPROTO_METADATAENTRY.containing_type = _RESOURCEGROUPPROTO
 _RESOURCEGROUPPROTO_NETWORK.containing_type = _RESOURCEGROUPPROTO
@@ -680,8 +709,8 @@ _OPERATIONHANDLER = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=858,
-  serialized_end=1371,
+  serialized_start=939,
+  serialized_end=1453,
   methods=[
   _descriptor.MethodDescriptor(
     name='Create',
@@ -770,7 +799,7 @@ _OPERATIONHANDLER = _descriptor.ServiceDescriptor(
     index=9,
     containing_service=None,
     input_type=_EMPTY,
-    output_type=_EMPTY,
+    output_type=_STATUS,
     options=None,
   ),
 ])
@@ -846,7 +875,7 @@ try:
       self.CheckStatus = channel.unary_unary(
           '/OperationHandler/CheckStatus',
           request_serializer=Empty.SerializeToString,
-          response_deserializer=Empty.FromString,
+          response_deserializer=Status.FromString,
           )
 
 
@@ -975,7 +1004,7 @@ try:
         'CheckStatus': grpc.unary_unary_rpc_method_handler(
             servicer.CheckStatus,
             request_deserializer=Empty.FromString,
-            response_serializer=Empty.SerializeToString,
+            response_serializer=Status.SerializeToString,
         ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -1114,7 +1143,7 @@ try:
     response_serializers = {
       ('OperationHandler', 'CheckIfContainerExists'): StringResponse.SerializeToString,
       ('OperationHandler', 'CheckIfContainerRunning'): StringResponse.SerializeToString,
-      ('OperationHandler', 'CheckStatus'): Empty.SerializeToString,
+      ('OperationHandler', 'CheckStatus'): Status.SerializeToString,
       ('OperationHandler', 'Create'): ResourceGroupProto.SerializeToString,
       ('OperationHandler', 'DownloadFile'): FileMessage.SerializeToString,
       ('OperationHandler', 'ExecuteCommand'): StringResponse.SerializeToString,
@@ -1160,7 +1189,7 @@ try:
     response_deserializers = {
       ('OperationHandler', 'CheckIfContainerExists'): StringResponse.FromString,
       ('OperationHandler', 'CheckIfContainerRunning'): StringResponse.FromString,
-      ('OperationHandler', 'CheckStatus'): Empty.FromString,
+      ('OperationHandler', 'CheckStatus'): Status.FromString,
       ('OperationHandler', 'Create'): ResourceGroupProto.FromString,
       ('OperationHandler', 'DownloadFile'): FileMessage.FromString,
       ('OperationHandler', 'ExecuteCommand'): StringResponse.FromString,

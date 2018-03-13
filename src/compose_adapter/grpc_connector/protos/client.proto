@@ -30,14 +30,19 @@ message Empty {
 }
 
 message Status {
-    string status = 1;
+    enum ServingStatus {
+        CONFIGURE = 0;
+        ACTIVE = 1;
+        INACTIVE = 2;
+    }
+    ServingStatus status = 1;
 }
 
 message Auth {
-        string auth_url = 1;
-        string username = 2;
-        string password = 3;
-        string project = 4;
+    string auth_url = 1;
+    string username = 2;
+    string password = 3;
+    string project = 4;
 }
 
 message ResourceGroupProto {
@@ -95,5 +100,5 @@ service OperationHandler {
 
     rpc UploadFile(RuntimeMessage) returns (Empty) {}
 
-    rpc CheckStatus(Empty) returns (Empty) {}
+    rpc CheckStatus(Empty) returns (Status) {}
 }

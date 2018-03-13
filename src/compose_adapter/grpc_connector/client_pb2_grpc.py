@@ -62,7 +62,7 @@ class OperationHandlerStub(object):
     self.CheckStatus = channel.unary_unary(
         '/OperationHandler/CheckStatus',
         request_serializer=client__pb2.Empty.SerializeToString,
-        response_deserializer=client__pb2.Empty.FromString,
+        response_deserializer=client__pb2.Status.FromString,
         )
 
 
@@ -191,7 +191,7 @@ def add_OperationHandlerServicer_to_server(servicer, server):
       'CheckStatus': grpc.unary_unary_rpc_method_handler(
           servicer.CheckStatus,
           request_deserializer=client__pb2.Empty.FromString,
-          response_serializer=client__pb2.Empty.SerializeToString,
+          response_serializer=client__pb2.Status.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
