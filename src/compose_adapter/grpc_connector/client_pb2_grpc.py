@@ -197,3 +197,62 @@ def add_OperationHandlerServicer_to_server(servicer, server):
   generic_handler = grpc.method_handlers_generic_handler(
       'OperationHandler', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))
+
+
+class AdapterHandlerStub(object):
+  # missing associated documentation comment in .proto file
+  pass
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.RegisterAdapter = channel.unary_unary(
+        '/AdapterHandler/RegisterAdapter',
+        request_serializer=client__pb2.AdapterProto.SerializeToString,
+        response_deserializer=client__pb2.Empty.FromString,
+        )
+    self.DeleteAdapter = channel.unary_unary(
+        '/AdapterHandler/DeleteAdapter',
+        request_serializer=client__pb2.ResourceIdentifier.SerializeToString,
+        response_deserializer=client__pb2.Empty.FromString,
+        )
+
+
+class AdapterHandlerServicer(object):
+  # missing associated documentation comment in .proto file
+  pass
+
+  def RegisterAdapter(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def DeleteAdapter(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_AdapterHandlerServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'RegisterAdapter': grpc.unary_unary_rpc_method_handler(
+          servicer.RegisterAdapter,
+          request_deserializer=client__pb2.AdapterProto.FromString,
+          response_serializer=client__pb2.Empty.SerializeToString,
+      ),
+      'DeleteAdapter': grpc.unary_unary_rpc_method_handler(
+          servicer.DeleteAdapter,
+          request_deserializer=client__pb2.ResourceIdentifier.FromString,
+          response_serializer=client__pb2.Empty.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'AdapterHandler', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
