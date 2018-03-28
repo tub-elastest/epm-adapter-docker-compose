@@ -149,7 +149,7 @@ def serve(port="50051", register=False, ip="elastest-epm", compose_ip="elastest-
 
     if register:
         print("Trying to register pop to EPM container...")
-        utils.register_pop(ip, compose_ip)
+        utils.register_adapter(ip, compose_ip)
 
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     client_pb2_grpc.add_OperationHandlerServicer_to_server(
@@ -164,7 +164,7 @@ def serve(port="50051", register=False, ip="elastest-epm", compose_ip="elastest-
 
 
 if __name__ == '__main__':
-    if "--register-pop" in sys.argv:
+    if "--register-adapter" in sys.argv:
         if len(sys.argv) == 4:
             serve(register=True, ip=sys.argv[2], compose_ip=sys.argv[3])
         else:

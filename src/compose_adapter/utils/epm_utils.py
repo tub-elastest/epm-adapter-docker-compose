@@ -5,7 +5,7 @@ import time
 
 max_timeout = 10
 
-def register_pop(ip, compose_ip):
+def register_adapter(ip, compose_ip):
     channel = grpc.insecure_channel(ip+":50050")
     stub = client_pb2_grpc.AdapterHandlerStub(channel)
 
