@@ -136,7 +136,7 @@ def execute_on_container(container_id, command):
 def download_file_from_container(container_id, path):
     client = docker.APIClient(base_url="unix://var/run/docker.sock")
     archive = client.get_archive(container_id, path)
-    return archive[0].read()
+    return archive[0].next()
 
 
 def upload_file_to_container(container_id, path, archive):

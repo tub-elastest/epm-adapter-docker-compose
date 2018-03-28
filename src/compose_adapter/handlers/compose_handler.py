@@ -5,14 +5,13 @@ from compose.project import OneOffFilter
 from operator import attrgetter
 import yaml
 
-
 # Up the services and return the container ids
 def up(project_path, default_logging, logging_address):
 
     if default_logging:
         set_logging_driver(project_path, logging_address)
 
-    up_options = {"-d": True,
+    up_options = {"--detach": True,
                   "--no-color": False,
                   "--no-deps": False,
                   "--build": False,
@@ -21,6 +20,7 @@ def up(project_path, default_logging, logging_address):
                   "--no-recreate": True,
                   "--force-recreate": False,
                   "--no-build": False,
+                  "--always-recreate-deps": False,
                   "SERVICE": "",
                   "--scale": []
                   }
