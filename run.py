@@ -181,5 +181,5 @@ if __name__ == '__main__':
             ip = "elastest-epm"
             compose_ip = "elastest-epm-adapter-docker-compose"
             adapter_id = utils.register_adapter(ip=ip, compose_ip=compose_ip)
-            epm_ip = sys.argv[2]
+            epm_ip = ip
     serve()
