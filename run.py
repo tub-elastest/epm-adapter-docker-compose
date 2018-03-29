@@ -4,6 +4,7 @@ import tarfile
 import tempfile
 import time
 import yaml
+import atexit
 
 import grpc
 import src.compose_adapter.grpc_connector.client_pb2_grpc as client_pb2_grpc
@@ -143,13 +144,10 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
             return client_pb2.Empty()
 
 
-def serve(port="50051", register=False, ip="elastest-epm", compose_ip="elastest-epm-adapter-docker-compose"):
+
+def serve(port="50051"):
     print("Starting server...")
     print("Listening on port: " + port)
-
-    if register:
-        print("Trying to register pop to EPM container...")
-        utils.register_pop(ip, compose_ip)
 
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     client_pb2_grpc.add_OperationHandlerServicer_to_server(
@@ -162,12 +160,26 @@ def serve(port="50051", register=False, ip="elastest-epm", compose_ip="elastest-
     except KeyboardInterrupt:
         server.stop(0)
 
+adapter_id = ""
+epm_ip = ""
+
+@atexit.register
+def stop():
+    print("Exiting")
+    if adapter_id != "" and epm_ip != "":
+        print("DELETING ADAPTER")
+        utils.unregister_adapter(epm_ip, adapter_id)
+
 
 if __name__ == '__main__':
-    if "--register-pop" in sys.argv:
+    if "--register-adapter" in sys.argv:
         if len(sys.argv) == 4:
-            serve(register=True, ip=sys.argv[2], compose_ip=sys.argv[3])
+            print("Trying to register pop to EPM container...")
+            adapter_id = utils.register_adapter(ip=sys.argv[2], compose_ip=sys.argv[3])
+            epm_ip = sys.argv[2]
         else:
-            serve(register=True)
-    else:
-        serve()
+            ip = "elastest-epm"
+            compose_ip = "elastest-epm-adapter-docker-compose"
+            adapter_id = utils.register_adapter(ip=ip, compose_ip=compose_ip)
+            epm_ip = sys.argv[2]
+    serve()

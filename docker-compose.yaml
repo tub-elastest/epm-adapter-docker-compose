@@ -14,7 +14,7 @@ services:
     epm-adapter-docker-compose:
         container_name: elastest-epm-adapter-docker-compose
         image: elastest/epm-adapter-docker-compose
-        entrypoint: python run.py --register-pop
+        entrypoint: python run.py --register-adapter
         depends_on:
             - elastest-platform-manager
         volumes:
