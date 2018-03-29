@@ -110,7 +110,7 @@ service OperationHandler {
 
 service AdapterHandler {
 
-    rpc RegisterAdapter(AdapterProto) returns (Empty) {}
+    rpc RegisterAdapter(AdapterProto) returns (ResourceIdentifier) {}
 
     rpc DeleteAdapter(ResourceIdentifier) returns (Empty) {}
 }
