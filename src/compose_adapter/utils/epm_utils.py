@@ -2,6 +2,8 @@ import grpc
 import src.compose_adapter.grpc_connector.client_pb2_grpc as client_pb2_grpc
 import src.compose_adapter.grpc_connector.client_pb2 as client_pb2
 import time
+import requests
+import json
 
 max_timeout = 10
 
@@ -14,9 +16,16 @@ def register_adapter(ip, compose_ip):
 
     i = 0
     while i < 10:
+        pop_compose = {"name": "compose-" + compose_ip,
+                       "interfaceEndpoint": compose_ip,
+                       "interfaceInfo":[{"key": "type","value": "docker-compose"}]}
+
+        headers = {"accept": "application/json","content-type": "application/json"}
         try:
             identifier = stub.RegisterAdapter(adapter)
+            r = requests.post('http://' + ip + ':8180/v1/pop', data=json.dumps(pop_compose), headers=headers)
             print("Adapter registered")
+            print(str(r.status_code) + " " + r.reason)
             return identifier.resource_id
         except:
             print("Still not connected")

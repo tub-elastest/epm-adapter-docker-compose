@@ -39,7 +39,7 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
                     password = metadata.get("docker_password")
                 registry_credentials.append(metadata.get("docker_registry"))
                 registry_credentials.append(metadata.get("docker_username"))
-                registry_credentials.append(metadata.get("docker_password"))
+                registry_credentials.append(password)
             else:
                 print("If you specify a custom docker registry, you need to specify the login credentials.")
 
