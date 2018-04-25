@@ -13,38 +13,45 @@ This is an example **Metadata** file:
 name: example-name
 ```
 
-The client is implemented using **python2.7** and the Docker-Compose, Docker and gRPC libraries.
+The adapter is implemented using **python2.7** and the Docker-Compose, Docker and gRPC libraries.
 
-## Launching the client
+## Launching the adapter
 
-The client has to be started using the **client.py** file. The default port of the client is 50051.
+The adapter has to be started using the **run.py** file. The default port of the adapter is 50051.
 
 ```bash
-python run.py
+python -m run
 ```
 
-If the EPM is already running you can make the client register itself on the EPM automatically and 
+If the EPM is already running you can make the adapter register itself on the EPM automatically and 
 you won't need to register a pop manually.
 
 ```yaml
-python run.py --register-pop <epm-ip> <compose-client-ip>
+python run.py --register-adapter <epm-ip> <compose-adapter-ip>
 
 ```
 
-## Launching the client in a docker container
+## Launching the adapter in a docker container
 
-To start the client in a docker container run this command:
+To start the adapter in a docker container run this command:
 ```bash
-docker run -v /var/run/docker.sock:/var/run/docker.sock -p 50051:50051 --expose 50051 -i -t epm-adapter-docker-compose
+docker run -v /var/run/docker.sock:/var/run/docker.sock -p 50051:50051 --expose 50051 -i -t elastest/epm-adapter-docker-compose
 ```
 
-## Launching the client and the EPM in a docker containers
+## Launching the adapter and the EPM in a docker containers
 
-If you want to start both the Elastest Platform Manager and the Docker-Compose client you can run:
+If you want to start both the Elastest Platform Manager and the Docker-Compose adapter you can run:
 
 ```bash
 docker-compose up
 ```
 
-This will create the docker container for both the client and the EPM and will also automatically register 
-the client to the EPM, so you can start using them straight away.
+This will create the docker container for both the adapter and the EPM and will also automatically register 
+the adapter to the EPM, so you can start using them straight away.
+
+
+## Usage
+
+The Docker Compose Adapter is built to be able to work only on the local docker compose environment, due to the 
+way that docker compose itself is built. Therefore when registering the adapter will also register a pop for the 
+docker compose environment that it can reach, so no further configurations are needed before launching packages.
