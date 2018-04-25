@@ -11,6 +11,7 @@ The package has to be a **tar** file and has to have the following structure:
 This is an example **Metadata** file:
 ```yaml
 name: example-name
+type: docker-compose
 ```
 
 The adapter is implemented using **python2.7** and the Docker-Compose, Docker and gRPC libraries.
