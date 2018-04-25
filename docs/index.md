@@ -41,15 +41,7 @@ docker run -v /var/run/docker.sock:/var/run/docker.sock -p 50051:50051 --expose 
 
 ## Launching the adapter and the EPM in a docker containers
 
-If you want to start both the Elastest Platform Manager and the Docker-Compose adapter you can run:
-
-```bash
-docker-compose up
-```
-
-This will create the docker container for both the adapter and the EPM and will also automatically register 
-the adapter to the EPM, so you can start using them straight away.
-
+If you want to start both the Elastest Platform Manager and the Docker-Compose adapter you can use this [docker-compose](https://github.com/elastest/elastest-platform-manager/blob/master/docker-compose-epm.yml).
 
 ## Usage
 
