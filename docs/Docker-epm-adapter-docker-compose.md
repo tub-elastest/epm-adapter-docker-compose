@@ -52,40 +52,8 @@ To start the adapter in a docker container run this command:
 docker run -v /var/run/docker.sock:/var/run/docker.sock -p 50051:50051 --expose 50051 -i -t epm-adapter-docker-compose
 ```
 
-If you want to start both the Elastest Platform Manager and the Docker-Compose client you can use the docker-compose file below:
+If you want to start both the Elastest Platform Manager and the Docker-Compose client you can use this [docker-compose](https://github.com/elastest/elastest-platform-manager/blob/master/docker-compose-epm.yml).
 
-```bash
-version: '3'
-services:
-    elastest-platform-manager:
-        container_name: elastest-epm
-        image: elastest/epm
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock:rw
-        expose:
-            - 8180
-        ports:
-            - 8180:8180
-        networks:
-            - elastest
-    epm-adapter-docker-compose:
-        container_name: elastest-epm-adapter-docker-compose
-        image: elastest/epm-adapter-docker-compose
-        entrypoint: python run.py --register-pop
-        depends_on:
-            - elastest-platform-manager
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock:rw
-        expose: 
-            - 50051
-        ports:
-            - 50051:50051
-        networks:
-            - elastest
-networks:
-    elastest:
-        driver: bridge
-```
 
 
 This will create the docker container for both the adapter and the EPM and will also automatically register the adapter to the EPM, so you can start using them straight away.
@@ -101,6 +69,7 @@ The package has to be a **tar** file and has to have the following structure:
 This is an example **Metadata** file:
 ```yaml
 name: example-name
+type: docker-compose
 ```
 
 ## Dependencies (other containers or tools)
