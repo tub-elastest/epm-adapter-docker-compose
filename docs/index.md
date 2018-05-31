@@ -4,7 +4,7 @@ The Docker-Compose adapter compliant with ElasTest Platform Manager is used to l
 
 The package has to be a **tar** file and has to have the following structure:
 ```bash
-- Metadata.yaml #Simple metadata file that should include the name of the package
+- metadata.yaml #Simple metadata file that should include the name of the package
 - docker-compose.yml #The docker-compose file
 ```
 
@@ -12,6 +12,7 @@ This is an example **Metadata** file:
 ```yaml
 name: example-name
 type: docker-compose
+pop: pop-name # OPTIONAL: specify the name of the pop for deploying the package
 ```
 
 The adapter is implemented using **python2.7** and the Docker-Compose, Docker and gRPC libraries.
