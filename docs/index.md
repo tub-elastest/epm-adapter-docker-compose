@@ -1,5 +1,7 @@
 # Elastest Platform Manager Docker-Compose adapter
 
+**Note:** Currently the adapter does not yet support docker-compose 1.21.x 
+
 The Docker-Compose adapter compliant with ElasTest Platform Manager is used to launch docker-compose instances. The docker-compose file is passed along with an additional Metadata file in a package. 
 
 The package has to be a **tar** file and has to have the following structure:

@@ -11,8 +11,9 @@ import src.compose_adapter.grpc_connector.client_pb2_grpc as client_pb2_grpc
 from concurrent import futures
 
 import src.compose_adapter.grpc_connector.client_pb2 as client_pb2
-from src.compose_adapter.utils import epm_utils as utils
+from src.compose_adapter.utils import epm_utils as epm_utils
 from src.compose_adapter.handlers import compose_handler, docker_handler
+from src.compose_adapter.utils import utils
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
@@ -28,7 +29,9 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
         temp.write(request.file)
         package = tarfile.open(temp.name, "r")
 
-        metadata = yaml.load(package.extractfile("metadata.yaml").read())
+        metadata = utils.extract_metadata(package)
+        if metadata is None:
+            raise Exception("No metadata found in package!")
         package_name = metadata.get("name")
 
         registry_credentials = []
@@ -47,8 +50,11 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
         if not os.path.exists(compose_path):
             os.mkdir(compose_path)
 
+        compose = utils.extract_compose(package)
+        if compose is None:
+            raise Exception("No docker-compose file found in package!")
         f = open(compose_path + "/docker-compose.yml", "wb")
-        f.write(package.extractfile("docker-compose.yml").read())
+        f.write(compose)
         f.close()
         package.close()
         temp.close()
@@ -130,7 +136,7 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
 
         container_id = request.resource_id
         type = request.property[0]
-        if(type == "withPath"):
+        if type == "withPath":
             remotePath = request.property[2]
             hostPath = request.property[1]
             print("Uploading a file " + hostPath + " to " + remotePath)
@@ -168,18 +174,18 @@ def stop():
     print("Exiting")
     if adapter_id != "" and epm_ip != "":
         print("DELETING ADAPTER")
-        utils.unregister_adapter(epm_ip, adapter_id)
+        epm_utils.unregister_adapter(epm_ip, adapter_id)
 
 
 if __name__ == '__main__':
     if "--register-adapter" in sys.argv:
         if len(sys.argv) == 4:
             print("Trying to register pop to EPM container...")
-            adapter_id = utils.register_adapter(ip=sys.argv[2], compose_ip=sys.argv[3])
+            adapter_id = epm_utils.register_adapter(ip=sys.argv[2], compose_ip=sys.argv[3])
             epm_ip = sys.argv[2]
         else:
             ip = "elastest-epm"
             compose_ip = "elastest-epm-adapter-docker-compose"
-            adapter_id = utils.register_adapter(ip=ip, compose_ip=compose_ip)
+            adapter_id = epm_utils.register_adapter(ip=ip, compose_ip=compose_ip)
             epm_ip = ip
     serve()
