@@ -2,7 +2,7 @@ import os
 import tarfile
 import docker
 
-from src.compose_adapter.grpc_connector.client_pb2 import ResourceGroupProto
+from src.compose_adapter.grpc_connector.client_pb2 import ResourceGroupProto, MetadataEntry, VDU, PoP, Network
 
 
 def convert_to_resource_group(container_ids, resource_group_name):
@@ -34,13 +34,13 @@ def convert_to_resource_group(container_ids, resource_group_name):
             for v in portBindings[key]:
                 p = v["HostPort"]
                 binding = p + ":" + key
-                port_binding = ResourceGroupProto.MetadataEntry(key="PORT_BINDING", value=binding)
+                port_binding = MetadataEntry(key="PORT_BINDING", value=binding)
                 metadata_entries.append(port_binding)
 
         key = next(iter(container.attrs["NetworkSettings"]["Networks"]))
         ip = container.attrs["NetworkSettings"]["Networks"][key]["IPAddress"]
 
-        vdu = ResourceGroupProto.VDU(name=name, imageName=imageName, netName=netName, computeId=id, ip=ip,
+        vdu = VDU(name=name, imageName=imageName, netName=netName, computeId=id, ip=ip,
                                      metadata=metadata_entries)
         vdus.append(vdu)
 
@@ -48,7 +48,7 @@ def convert_to_resource_group(container_ids, resource_group_name):
     for net_name in network_names:
         cidr = client.networks.list(names=[net_name])[0].attrs["IPAM"]["Config"][0]["Subnet"]
         netId = client.networks.list(names=[net_name])[0].attrs["Id"]
-        net = ResourceGroupProto.Network(name=net_name, cidr=cidr, poPName="docker-local", networkId=netId)
+        net = Network(name=net_name, cidr=cidr, poPName="docker-local", networkId=netId)
         networks.append(net)
 
     rg = ResourceGroupProto(name=resource_group_name, pops=pops, networks=networks, vdus=vdus)
@@ -76,7 +76,7 @@ def recursive_parsing(data, names, out):
         key = names[0]
         for n in range(1, len(names)):
             key += "_" + str(names[n])
-        entry = ResourceGroupProto.MetadataEntry(key=key, value=str(a).strip())
+        entry = MetadataEntry(key=key, value=str(a).strip())
         out.append(entry)
 
     if isinstance(a, list) and len(a) > 0:
@@ -87,13 +87,13 @@ def recursive_parsing(data, names, out):
                 key += "_" + str(names[n])
             for v in a:
                 value += v + ";"
-            entry = ResourceGroupProto.MetadataEntry(key=key, value=value)
+            entry = MetadataEntry(key=key, value=value)
             out.append(entry)
         else:
             key = names[0]
             for n in range(1, len(names)):
                 key += "_" + str(names[n])
-            entry = ResourceGroupProto.MetadataEntry(key=key, value=str(a).strip())
+            entry = MetadataEntry(key=key, value=str(a).strip())
             out.append(entry)
 
     if isinstance(a, dict):

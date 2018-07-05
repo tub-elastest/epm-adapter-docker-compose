@@ -59,13 +59,14 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
         package.close()
         temp.close()
 
-        options = request.options
-        if len(options) >= 2:
-            enabled = options[0] == "True"
-            address = str(options[1])
-        else:
-            enabled=False
-            address=""
+        options = request.metadata
+        enabled = False
+        address = ""
+        for option in options:
+            if option.key == "enabled":
+                enabled = option.value
+            if option.key == "address":
+                enabled = option.value
 
         if len(registry_credentials) == 3:
             docker_handler.login_to_registry(registry_credentials)
@@ -106,13 +107,14 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
 
         return client_pb2.Empty()
 
-    def StartContainer(self, request, context):
+    def Start(self, request, context):
+
         container_id = request.resource_id
         print("Starting container " + container_id)
         docker_handler.start_container(container_id)
         return client_pb2.Empty()
 
-    def StopContainer(self, request, context):
+    def Stop(self, request, context):
         container_id = request.resource_id
         print("Stopping container " + container_id)
         docker_handler.stop_container(container_id)
