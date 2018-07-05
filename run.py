@@ -121,14 +121,14 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
         return client_pb2.Empty()
 
     def ExecuteCommand(self, request, context):
-        container_id = request.resource_id
+        container_id = request.vdu.computeId
         command = request.property[0]
         print("Executing command " + command)
         output = docker_handler.execute_on_container(container_id, command)
         return client_pb2.StringResponse(response=output)
 
     def DownloadFile(self, request, context):
-        container_id = request.resource_id
+        container_id = request.vdu.computeId
         path = request.property[0]
         print("Downloading file " + path)
         output = docker_handler.download_file_from_container(container_id, path)
@@ -136,7 +136,7 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
 
     def UploadFile(self, request, context):
 
-        container_id = request.resource_id
+        container_id = request.vdu.computeId
         type = request.property[0]
         if type == "withPath":
             remotePath = request.property[2]
