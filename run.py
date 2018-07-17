@@ -3,7 +3,8 @@ import sys
 import tarfile
 import tempfile
 import time
-import yaml
+import logging
+from logging import handlers
 import atexit
 
 import grpc
@@ -44,7 +45,7 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
                 registry_credentials.append(metadata.get("docker_username"))
                 registry_credentials.append(password)
             else:
-                print("If you specify a custom docker registry, you need to specify the login credentials.")
+                logging.error("If you specify a custom docker registry, you need to specify the login credentials.")
 
         compose_path = os.path.dirname(__file__) + "/packages/" + package_name
         if not os.path.exists(compose_path):
@@ -110,27 +111,27 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
     def Start(self, request, context):
 
         container_id = request.resource_id
-        print("Starting container " + container_id)
+        logging.info("Starting container " + container_id)
         docker_handler.start_container(container_id)
         return client_pb2.Empty()
 
     def Stop(self, request, context):
         container_id = request.resource_id
-        print("Stopping container " + container_id)
+        logging.info("Stopping container " + container_id)
         docker_handler.stop_container(container_id)
         return client_pb2.Empty()
 
     def ExecuteCommand(self, request, context):
         container_id = request.vdu.computeId
         command = request.property[0]
-        print("Executing command " + command)
+        logging.info("Executing command " + command)
         output = docker_handler.execute_on_container(container_id, command)
         return client_pb2.StringResponse(response=output)
 
     def DownloadFile(self, request, context):
         container_id = request.vdu.computeId
         path = request.property[0]
-        print("Downloading file " + path)
+        logging.info("Downloading file " + path)
         output = docker_handler.download_file_from_container(container_id, path)
         return client_pb2.FileMessage(file=output)
 
@@ -141,12 +142,12 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
         if type == "withPath":
             remotePath = request.property[2]
             hostPath = request.property[1]
-            print("Uploading a file " + hostPath + " to " + remotePath)
+            logging.info("Uploading a file " + hostPath + " to " + remotePath)
             docker_handler.upload_file_to_container_from_path(container_id, hostPath, remotePath)
             return client_pb2.Empty()
         else:
             path = request.property[0]
-            print("Uploading a file to " + path)
+            logging.info("Uploading a file to " + path)
             file = request.file
             docker_handler.upload_file_to_container(container_id, path, file)
             return client_pb2.Empty()
@@ -154,8 +155,8 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
 
 
 def serve(port="50051"):
-    print("Starting server...")
-    print("Listening on port: " + port)
+    logging.info("Starting server...")
+    logging.info("Listening on port: " + port)
 
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     client_pb2_grpc.add_OperationHandlerServicer_to_server(
@@ -173,16 +174,29 @@ epm_ip = ""
 
 @atexit.register
 def stop():
-    print("Exiting")
+    logging.info("Exiting")
     if adapter_id != "" and epm_ip != "":
-        print("DELETING ADAPTER")
+        logging.info("DELETING ADAPTER")
         epm_utils.unregister_adapter(epm_ip, adapter_id)
 
 
 if __name__ == '__main__':
+    log = logging.getLogger('')
+    log.setLevel(logging.DEBUG)
+    format = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+
+    ch = logging.StreamHandler(sys.stdout)
+    ch.setFormatter(format)
+    log.addHandler(ch)
+
+    fh = handlers.RotatingFileHandler("compose-adapter-ansible.log", maxBytes=(1048576 * 5), backupCount=7)
+    fh.setFormatter(format)
+    log.addHandler(fh)
+    logging.info("\n")
+
     if "--register-adapter" in sys.argv:
         if len(sys.argv) == 4:
-            print("Trying to register pop to EPM container...")
+            logging.info("Trying to register pop to EPM container...")
             adapter_id = epm_utils.register_adapter(ip=sys.argv[2], compose_ip=sys.argv[3])
             epm_ip = sys.argv[2]
         else:

@@ -4,6 +4,7 @@ import src.compose_adapter.grpc_connector.client_pb2 as client_pb2
 import time
 import requests
 import json
+import logging
 
 max_timeout = 10
 
@@ -24,11 +25,11 @@ def register_adapter(ip, compose_ip):
         try:
             identifier = stub.RegisterAdapter(adapter)
             r = requests.post('http://' + ip + ':8180/v1/pop', data=json.dumps(pop_compose), headers=headers)
-            print("Adapter registered")
-            print(str(r.status_code) + " " + r.reason)
+            logging.info("Adapter registered")
+            logging.debug(str(r.status_code) + " " + r.reason)
             return identifier.resource_id
         except:
-            print("Still not connected")
+            logging.debug("Still not connected")
         time.sleep(11)
         i += 1
     return ""

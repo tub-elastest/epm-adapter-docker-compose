@@ -5,3 +5,5 @@ __pycache__/
 
 packages/*
 .idea/
+
+*.log
