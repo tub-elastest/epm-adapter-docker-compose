@@ -1,7 +1,5 @@
 import os
 import sys
-import tarfile
-import tempfile
 import time
 import logging
 from logging import handlers
@@ -13,68 +11,16 @@ from concurrent import futures
 
 import src.compose_adapter.grpc_connector.client_pb2 as client_pb2
 from src.compose_adapter.utils import epm_utils as epm_utils
-from src.compose_adapter.handlers import compose_handler, docker_handler
-from src.compose_adapter.utils import utils
+from src.compose_adapter.handlers import compose_handler, docker_handler, package_handler
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
+packages_path = os.path.dirname(__file__) + "/packages"
 
 class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
     def Create(self, request, context):
 
-        default_packages_path = os.path.dirname(__file__) + "/packages"
-        if not os.path.exists(default_packages_path):
-            os.mkdir(default_packages_path)
-
-        temp = tempfile.NamedTemporaryFile(delete=True)
-        temp.write(request.file)
-        package = tarfile.open(temp.name, "r")
-
-        metadata = utils.extract_metadata(package)
-        if metadata is None:
-            raise Exception("No metadata found in package!")
-        package_name = metadata.get("name")
-
-        registry_credentials = []
-        if "docker_registry" in metadata:
-            if "docker_username" in metadata:
-                password = ""
-                if "docker_password" in metadata:
-                    password = metadata.get("docker_password")
-                registry_credentials.append(metadata.get("docker_registry"))
-                registry_credentials.append(metadata.get("docker_username"))
-                registry_credentials.append(password)
-            else:
-                logging.error("If you specify a custom docker registry, you need to specify the login credentials.")
-
-        compose_path = os.path.dirname(__file__) + "/packages/" + package_name
-        if not os.path.exists(compose_path):
-            os.mkdir(compose_path)
-
-        compose = utils.extract_compose(package)
-        if compose is None:
-            raise Exception("No docker-compose file found in package!")
-        f = open(compose_path + "/docker-compose.yml", "wb")
-        f.write(compose)
-        f.close()
-        package.close()
-        temp.close()
-
-        options = request.metadata
-        enabled = False
-        address = ""
-        for option in options:
-            if option.key == "enabled":
-                enabled = option.value
-            if option.key == "address":
-                enabled = option.value
-
-        if len(registry_credentials) == 3:
-            docker_handler.login_to_registry(registry_credentials)
-
-        container_ids = compose_handler.up(project_path=compose_path, default_logging=enabled, logging_address=address)
-        rg = docker_handler.convert_to_resource_group(container_ids, resource_group_name=package_name)
-        return rg
+        return package_handler.extract_package(request, packages_path)
 
     def CheckStatus(self, request, context):
         """
