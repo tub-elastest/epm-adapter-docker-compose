@@ -10,7 +10,7 @@ import src.compose_adapter.grpc_connector.client_pb2_grpc as client_pb2_grpc
 from concurrent import futures
 
 import src.compose_adapter.grpc_connector.client_pb2 as client_pb2
-from src.compose_adapter.utils import epm_utils as epm_utils
+from src.compose_adapter.utils import epm_utils, utils
 from src.compose_adapter.handlers import compose_handler, docker_handler, package_handler
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
@@ -49,8 +49,7 @@ class ComposeHandlerService(client_pb2_grpc.OperationHandlerServicer):
         compose_path = os.path.dirname(__file__) + "/packages/" + compose_id
         compose_handler.rm(project_path=compose_path)
 
-        os.remove(compose_path + "/docker-compose.yml")
-        os.rmdir(compose_path)
+        utils.clean_folder(compose_path)
 
         return client_pb2.Empty()
 

@@ -15,7 +15,8 @@ def extract_compose(tar, compose_path):
     compose = None
     for member in tar.getmembers():
         if member.isdir():
-            os.mkdir(compose_path + "/" + member.name)
+            if not os.path.isdir(compose_path + "/" + member.name):
+                os.mkdir(compose_path + "/" + member.name)
         elif member.name.lower() == "docker-compose.yaml" or member.name.lower() == "docker-compose.yml":
             compose = tar.extractfile(member.name)
         else:
@@ -28,3 +29,8 @@ def extract_compose(tar, compose_path):
         f = open(compose_path + "/docker-compose.yml", "wb")
         f.write(compose.read())
         f.close()
+
+
+def clean_folder(compose_path):
+    import shutil
+    shutil.rmtree(compose_path + "/")
