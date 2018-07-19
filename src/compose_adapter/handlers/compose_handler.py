@@ -1,5 +1,5 @@
 import os
-
+import logging
 from compose.cli.main import TopLevelCommand, project_from_options
 from compose.project import OneOffFilter
 from operator import attrgetter
@@ -62,8 +62,8 @@ def rm(project_path):
 
 
 def set_logging_driver(project_path, logging_address):
-    print("Setting the logging driver!")
-    print(logging_address)
+    logging.info("Setting the logging driver!")
+    logging.info(logging_address)
     f = open(project_path + "/docker-compose.yml", "r")
     compose = yaml.load(f.read())
     f.close()
