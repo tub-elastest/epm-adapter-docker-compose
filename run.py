@@ -115,14 +115,15 @@ def serve(port="50051"):
         server.stop(0)
 
 adapter_id = ""
+pop_id = ""
 epm_ip = ""
 
 @atexit.register
 def stop():
     logging.info("Exiting")
-    if adapter_id != "" and epm_ip != "":
+    if adapter_id != "" and pop_id !="" and epm_ip != "":
         logging.info("DELETING ADAPTER")
-        epm_utils.unregister_adapter(epm_ip, adapter_id)
+        epm_utils.unregister_adapter(epm_ip, adapter_id, pop_id)
 
 
 if __name__ == '__main__':
@@ -142,11 +143,11 @@ if __name__ == '__main__':
     if "--register-adapter" in sys.argv:
         if len(sys.argv) == 4:
             logging.info("Trying to register pop to EPM container...")
-            adapter_id = epm_utils.register_adapter(ip=sys.argv[2], compose_ip=sys.argv[3])
+            adapter_id, pop_id = epm_utils.register_adapter(ip=sys.argv[2], compose_ip=sys.argv[3])
             epm_ip = sys.argv[2]
         else:
             ip = "elastest-epm"
             compose_ip = "elastest-epm-adapter-docker-compose"
-            adapter_id = epm_utils.register_adapter(ip=ip, compose_ip=compose_ip)
+            adapter_id, pop_id = epm_utils.register_adapter(ip=ip, compose_ip=compose_ip)
             epm_ip = ip
     serve()
