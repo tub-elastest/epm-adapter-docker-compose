@@ -24,6 +24,7 @@ def register_adapter(ip, compose_ip):
 
         headers = {"accept": "application/json","content-type": "application/json"}
         try:
+            logging.info("Trying to register to EPM at: " + ip)
             identifier = stub.RegisterAdapter(adapter)
             r = requests.post('http://' + ip + ':8180/v1/pop', data=json.dumps(pop_compose), headers=headers)
             logging.info("Adapter registered")
