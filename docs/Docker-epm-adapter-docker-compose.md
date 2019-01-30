@@ -15,8 +15,8 @@ What is epm-adapter-docker-compose?
 The docker-compose adapter compliant to the EPM is used to launch docker-compose instances. The docker-compose file is passed along with an additional Metadata file in a package. 
 
 # Supported tags and respective `Dockerfile` links
--	[`0.5.0` (*1.0/Dockerfile*)](https://github.com/mpauls/epm-adapter-docker-compose/blob/0.5.0/Dockerfile)
--	[`0.8.0` (*1.0/Dockerfile*)](https://github.com/mpauls/epm-adapter-docker-compose/blob/0.8.0/Dockerfile)
+-	[`0.5.0` (*1.0/Dockerfile*)](https://github.com/tub-elastest/epm-adapter-docker-compose/blob/0.5.0/Dockerfile)
+-	[`0.8.0` (*1.0/Dockerfile*)](https://github.com/tub-elastest/epm-adapter-docker-compose/blob/0.8.0/Dockerfile)
 
 # Quick reference
 
@@ -33,7 +33,7 @@ The docker-compose adapter compliant to the EPM is used to launch docker-compose
 	(image metadata, transfer size, etc).
 
 -	**Source of this description**:  
-	[docs repo's `template/` directory](https://github.com/mpauls/epm-adapter-docker-compose/blob/master/docs/Docker-epm-adapter-docker-compose.md) ([history](https://github.com//mpauls/epm-adapter-docker-compose/commits/master/docs/Docker-epm-adapter-docker-compose.md))
+	[docs repo's `template/` directory](https://github.com/tub-elastest/epm-adapter-docker-compose/blob/master/docs/Docker-epm-adapter-docker-compose.md) ([history](https://github.com//tub-elastest/epm-adapter-docker-compose/commits/master/docs/Docker-epm-adapter-docker-compose.md))
 
 -	**Supported Docker versions**:  
 	[the latest release](https://github.com/docker/docker/releases/latest) (down to 17.03.1 on a best-effort basis)
